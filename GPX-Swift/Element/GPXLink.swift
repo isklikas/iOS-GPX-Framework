@@ -22,7 +22,7 @@ class GPXLink: GPXElement {
     var mimetype:String?
 
     /** URL of hyperlink. */
-    var href:String?
+    var href:String = "";
 
 
     /// ---------------------------------
@@ -34,11 +34,10 @@ class GPXLink: GPXElement {
         super.init(withXMLElement: element, parent: parent);
         self.text = self.textForSingleChildElementNamed("text", xmlElement: element);
         self.mimetype = self.textForSingleChildElementNamed("type", xmlElement: element);
-        self.href = self.textForSingleChildElementNamed("href", xmlElement: element, required: true);
+        self.href = self.valueOfAttributeNamed("href", xmlElement: element, required: true) ?? "";
     }
     
     required override init(parent: GPXElement? = nil) {
-        self.href = "";
         super.init(parent: parent);
     }
     
@@ -60,10 +59,8 @@ class GPXLink: GPXElement {
     //MARK: GPX
     override func addOpenTagToGpx(_ gpx: inout String, indentationLevel: Int) {
         var attribute = "";
-        if let href = self.href {
-            let appendedStr = String(format: " href=\"%@\"", href);
-            attribute.append(appendedStr);
-        }
+        let appendedHref = String(format: " href=\"%@\"", href);
+        attribute.append(appendedHref);
         let appendedStr = String(format: "%@<%@%@>\r\n",
                                  self.indentForIndentationLevel(indentationLevel),
                                  type(of: self).tagName()!,

@@ -129,13 +129,17 @@ class GPXElement: NSObject {
     }
     
     func childElementsOfClass(_ classRef: GPXElement.Type, xmlElement element: GPXXMLElement) -> [GPXElement] {
+        guard let elementChildren = element.children else {
+            return [];
+        }
+        
         var childElements: [GPXElement] = [];
         if let tagName = classRef.tagName() {
-            var childElement = element.childElementNamed(tagName)
-            while (childElement != nil) {
-                let childGPXElement = classRef.init(withXMLElement: childElement!, parent: self)
-                childElements.append(childGPXElement);
-                childElement = childElement!.nextSiblingNamed(tagName)
+            for childElement in elementChildren {
+                if childElement.name == tagName {
+                    let childGPXElement = classRef.init(withXMLElement: childElement, parent: self)
+                    childElements.append(childGPXElement);
+                }
             }
         }
         return childElements;

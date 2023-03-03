@@ -63,10 +63,13 @@ class GPXRoot: GPXElement {
     required init(withXMLElement element: GPXXMLElement, parent: GPXElement? = nil) {
         super.init(withXMLElement: element, parent: parent);
         version = self.valueOfAttributeNamed("version", xmlElement: element, required: true) ?? self.version;
+        print(version);
         creator = self.valueOfAttributeNamed("creator", xmlElement: element, required: true) ?? self.creator;
+        print(creator);
         metadata = self.childElementOfClass(GPXMetadata.self, xmlElement: element) as? GPXMetadata;
         
-        keywords = GPXRoot.keywordsArray(fromString: self.textForSingleChildElementNamed("keywords", xmlElement: element));
+        let keywordsStr = self.textForSingleChildElementNamed("keywords", xmlElement: element);
+        keywords = GPXRoot.keywordsArray(fromString: keywordsStr);
         if (keywords?.count == nil && metadata?.keywords?.count != nil) {
             keywords = GPXRoot.keywordsArray(fromString: metadata?.keywords);
         }
