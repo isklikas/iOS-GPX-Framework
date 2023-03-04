@@ -64,6 +64,20 @@ public class GPXPoint: GPXElement {
         super.init()
     }
     
+    /** Creates and returns a new waypoint element.
+     - Parameter location: The location of the object.
+     - Returns: A newly created waypoint element.
+     */
+    init(location: CLLocation) {
+        let latitude = location.coordinate.latitude;
+        let longitude = location.coordinate.longitude;
+        let altitude = location.altitude;
+        super.init();
+        self.latitude = latitude;
+        self.longitude = longitude;
+        self.elevation = altitude;
+    }
+    
     //MARK: Tag
     override class func tagName() -> String? {
         return "pt";

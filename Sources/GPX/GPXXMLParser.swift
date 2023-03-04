@@ -114,7 +114,7 @@ class GPXXMLParser: NSObject, XMLParserDelegate {
     
     //The parsing objects
     private var parser: XMLParser?
-    weak var delegate: GPXParsing?
+    public weak var delegate: GPXParsing?
     
     init(data: Data) {
         super.init();

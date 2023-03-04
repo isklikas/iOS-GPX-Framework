@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 /** trk represents a track - an ordered list of points describing a path.
  */
@@ -185,6 +186,47 @@ public class GPXTrack: GPXElement {
     }
     
     /// ---------------------------------
+    /// @name Returning Transformed Data
+    /// ---------------------------------
+    
+    /** Returns an array of locations from the points array.
+     ** Important: This is in cases where altitude and time are both set and needed.
+     */
+    public func locations() -> [CLLocation] {
+        var locations: [CLLocation] = [];
+        for segment in self.tracksegments {
+            for point in segment.trackpoints {
+                if let latitude = point.latitude,
+                   let longitude = point.longitude,
+                   let altitde = point.elevation,
+                   let date = point.time
+                {
+                    let location = CLLocation(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), altitude: altitde, horizontalAccuracy: kCLLocationAccuracyBestForNavigation, verticalAccuracy: kCLLocationAccuracyBestForNavigation, timestamp: date);
+                    locations.append(location);
+                }
+            }
+        }
+        return locations;
+    }
+    
+    /** Returns an array of coordinates from the points array.
+     */
+    public func coordinates() -> [CLLocationCoordinate2D] {
+        var locations: [CLLocationCoordinate2D] = [];
+        for segment in self.tracksegments {
+            for point in segment.trackpoints {
+                if let latitude = point.latitude,
+                   let longitude = point.longitude
+                {
+                    let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                    locations.append(location);
+                }
+            }
+        }
+        return locations;
+    }
+    
+    /// ---------------------------------
     /// @name Creating Trackpoint
     /// ---------------------------------
 
@@ -206,6 +248,25 @@ public class GPXTrack: GPXElement {
         }
         
         return newTrackSegment!.newTrackpoint(withLatitude: latitude, longitude: longitude);
+    }
+    
+    /** Creates and returns a new trackpoint element.
+     @param location The location of the point.
+     @return A newly created trackpoint element.
+     */
+    func newTrackpoint(withLocation location: CLLocation) -> GPXTrackPoint {
+        
+        var newTrackSegment: GPXTrackSegment?
+        
+        // create a new segment if needed
+        if (tracksegments.count == 0) {
+            newTrackSegment = self.newTrackSegment();
+        }
+        else {
+            newTrackSegment = tracksegments.last;
+        }
+        
+        return newTrackSegment!.newTrackpoint(withLocation: location);
     }
     
     //MARK: Tag

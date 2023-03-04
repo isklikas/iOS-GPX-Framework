@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 /** rte represents route - an ordered list of waypoints representing a series of turn points leading to a destination.
  */
@@ -148,6 +149,16 @@ public class GPXRoute: GPXElement {
         self.addRoutePoint(routePoint);
         return routePoint;
     }
+    
+    /** Creates and returns a new routepoint element.
+     @param location The location of the point.
+     @return A newly created routepoint element.
+     */
+    func newRoutePoint(withLocation location: CLLocation) -> GPXRoutePoint {
+        let routePoint = GPXRoutePoint(location: location);
+        self.addRoutePoint(routePoint);
+        return routePoint;
+    }
 
     /// ---------------------------------
     /// @name Adding Routepoint
@@ -185,6 +196,43 @@ public class GPXRoute: GPXElement {
             routePoint.parent = nil;
             routePoints.remove(at: index);
         }
+    }
+    
+    /// ---------------------------------
+    /// @name Returning Transformed Data
+    /// ---------------------------------
+    
+    /** Returns an array of locations from the points array.
+     ** Important: This is in cases where altitude and time are both set and needed.
+     */
+    public func locations() -> [CLLocation] {
+        var locations: [CLLocation] = [];
+        for point in routePoints {
+            if let latitude = point.latitude,
+               let longitude = point.longitude,
+               let altitde = point.elevation,
+               let date = point.time
+            {
+                let location = CLLocation(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), altitude: altitde, horizontalAccuracy: kCLLocationAccuracyBestForNavigation, verticalAccuracy: kCLLocationAccuracyBestForNavigation, timestamp: date);
+                locations.append(location);
+            }
+        }
+        return locations;
+    }
+    
+    /** Returns an array of coordinates from the points array.
+     */
+    public func coordinates() -> [CLLocationCoordinate2D] {
+        var locations: [CLLocationCoordinate2D] = [];
+        for point in routePoints {
+            if let latitude = point.latitude,
+               let longitude = point.longitude
+            {
+                let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                locations.append(location);
+            }
+        }
+        return locations;
     }
     
     //MARK: Tag

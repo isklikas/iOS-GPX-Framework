@@ -299,7 +299,21 @@ public class GPXWaypoint: GPXElement {
     /// ---------------------------------
     /// ###  Create Waypoint
     /// ---------------------------------
-
+    
+    /** Creates and returns a new waypoint element.
+     - Parameter location: The location of the object.
+     - Returns: A newly created waypoint element.
+     */
+    init(location: CLLocation) {
+        let latitude = location.coordinate.latitude;
+        let longitude = location.coordinate.longitude;
+        let altitude = location.altitude;
+        super.init();
+        self.latitude = latitude;
+        self.longitude = longitude;
+        self.elevation = altitude;
+    }
+    
     /** Creates and returns a new waypoint element.
      - Parameter latitude: The latitude of the point.
      - Parameter longitude: The longitude of the point.
