@@ -10,7 +10,7 @@ import XCTest
 
 class GPX_SwiftTests: XCTestCase, GPXParsing {
     
-    func parser(_ parser: AnyObject, didCompleteParsing rootXMLElement: GPXXMLElement) {
+    func parser(_ parser: GPXParser, didCompleteParsing rootXMLElement: GPXXMLElement) {
         let root = GPXRoot(withXMLElement: rootXMLElement);
         
         // gpx
@@ -195,7 +195,7 @@ class GPX_SwiftTests: XCTestCase, GPXParsing {
         XCTAssertEqual(trackpoint!.longitude, -71.098173);
     }
     
-    func parser(_ parser: AnyObject, didFailParsingWithError error: Error) {
+    func parser(_ parser: GPXParser, didFailParsingWithError error: Error) {
         print(error.localizedDescription);
     }
     
@@ -211,8 +211,8 @@ class GPX_SwiftTests: XCTestCase, GPXParsing {
         let path = Bundle.module.path(forResource: "mystic_basin_trail", ofType: "gpx")!
         
         let parser = GPXParser(path);
-        parser?.gpxXMLParser.delegate = self;
-        parser?.gpxXMLParser.startParsing();
+        parser?.delegate = self;
+        parser?.start();
     }
 
     func testPerformanceExample() throws {

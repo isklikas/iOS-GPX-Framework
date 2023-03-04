@@ -1,5 +1,5 @@
 # iOS GPX Framework
-============================
+---------------------------------
 
 This is a universal module for parsing/generating GPX files.
 This module parses the GPX from a URL or String and creates Swift Instances of GPX structure. 
@@ -50,16 +50,16 @@ How to use?
     ```swift
     let urlPath = Bundle.main.url(forResource: "mystic_basin_trail", withExtension: "gpx");
     let parser = GPXParser(urlPath);
-    parser.gpxXMLParser.delegate = self;
-    parser.gpxXMLParser.startParsing();
+    parser.delegate = self;
+    parser.start();
     
-    func parser(_ parser: AnyObject, didCompleteParsing rootXMLElement: GPXXMLElement) {
+    func parser(_ parser: GPXParser, didCompleteParsing rootXMLElement: GPXXMLElement) {
         let root = GPXRoot(withXMLElement: rootXMLElement);
         // Use the parsed GPX file as you wish, for an example you can refer to 
         // the test file in the git repo.
     }
     
-    func parser(_ parser: AnyObject, didFailParsingWithError error: Error) {
+    func parser(_ parser: GPXParser, didFailParsingWithError error: Error) {
         print(error.localizedDescription);
     }
     ```

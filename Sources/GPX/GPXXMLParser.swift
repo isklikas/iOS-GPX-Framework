@@ -88,11 +88,6 @@ public class GPXXMLAttribute: NSObject {
     }
 }
 
-public protocol GPXParsing: NSObjectProtocol {
-    func parser(_ parser: AnyObject, didCompleteParsing rootXMLElement: GPXXMLElement);
-    func parser(_ parser: AnyObject, didFailParsingWithError error: Error);
-}
-
 class GPXXMLParser: NSObject, XMLParserDelegate {
     /*
      The algorithm logic is to have a currentParent Element, under which every object is added
@@ -114,7 +109,7 @@ class GPXXMLParser: NSObject, XMLParserDelegate {
     
     //The parsing objects
     private var parser: XMLParser?
-    public weak var delegate: GPXParsing?
+    var gpxParser: GPXParser?
     
     init(data: Data) {
         super.init();
@@ -173,11 +168,11 @@ class GPXXMLParser: NSObject, XMLParserDelegate {
         if (elementName == "gpx") {
             if let completeRootElement = self.rootXMLElement {
                 print("Parsing complete")
-                self.delegate?.parser(self, didCompleteParsing: completeRootElement);
+                self.gpxParser?.gpxParsingComplete(completeRootElement);
             }
             else {
                 let noRootElementError = NSError(domain: "", code: 404, userInfo: [ NSLocalizedDescriptionKey: "No Root Element was created"]) as Error
-                self.delegate?.parser(self, didFailParsingWithError: noRootElementError);
+                self.gpxParser?.gpxParsingFailed(noRootElementError);
             }
         }
         else {
@@ -189,6 +184,6 @@ class GPXXMLParser: NSObject, XMLParserDelegate {
     }
     
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-        self.delegate?.parser(self, didFailParsingWithError: parseError);
+        self.gpxParser?.gpxParsingFailed(parseError);
     }
 }

@@ -7,12 +7,19 @@
 
 import Foundation
 
+/** Instances of this protocol notify of completely parsed GPX documents, or errors that occured during parsing
+ */
+public protocol GPXParsing: NSObjectProtocol {
+    func parser(_ parser: GPXParser, didCompleteParsing rootXMLElement: GPXXMLElement);
+    func parser(_ parser: GPXParser, didFailParsingWithError error: Error);
+}
+
 /** Instances of this class parse GPX documents.
  */
 public class GPXParser: NSObject {
     
     var gpxXMLParser: GPXXMLParser;
-    
+    public weak var delegate: GPXParsing?
     
     /// ---------------------------------
     /// @name Parsing
@@ -25,6 +32,7 @@ public class GPXParser: NSObject {
     public init(_ url: URL) {
         self.gpxXMLParser = GPXXMLParser(url: url);
         super.init()
+        gpxXMLParser.gpxParser = self;
     }
 
     /** Parsing the GPX content referenced by the given File path.
@@ -44,6 +52,7 @@ public class GPXParser: NSObject {
         }
         self.gpxXMLParser = GPXXMLParser(url: url);
         super.init();
+        gpxXMLParser.gpxParser = self;
     }
 
     /** Parsing the GPX content referenced by the given GPX string.
@@ -53,6 +62,7 @@ public class GPXParser: NSObject {
     public init(withString string: String) {
         self.gpxXMLParser = GPXXMLParser(string: string);
         super.init();
+        gpxXMLParser.gpxParser = self;
     }
 
     /** Parsing the GPX content referenced by the given data.
@@ -62,6 +72,25 @@ public class GPXParser: NSObject {
     public init(withData data: Data) {
         self.gpxXMLParser = GPXXMLParser(data: data);
         super.init();
+        gpxXMLParser.gpxParser = self;
+    }
+    
+    /** Called to start parsing the GPX file.
+     ** IMPORTANT:Only do so after setting your class as GPXParsing delegate
+     */
+    public func start() {
+        self.gpxXMLParser.startParsing();
     }
 
+    /** Called when the GPX file has been parsed successfully
+     */
+    func gpxParsingComplete(_ rootElement: GPXXMLElement) {
+        self.delegate?.parser(self, didCompleteParsing: rootElement);
+    }
+    
+    /** Called when an error has occured during GPX file parsing
+     */
+    func gpxParsingFailed(_ error: Error) {
+        self.delegate?.parser(self, didFailParsingWithError: error);
+    }
 }
