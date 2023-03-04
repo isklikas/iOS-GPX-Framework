@@ -44,7 +44,7 @@ public class GPXEmail: GPXElement {
      @return A newly created email element.
      */
     
-    class func emailWithID(_ emailID: String, domain: String) -> GPXEmail {
+    class public func emailWithID(_ emailID: String, domain: String) -> GPXEmail {
         let email = self.init()
         email.emailID = emailID;
         email.domain = domain;

@@ -17,19 +17,19 @@ public class GPXRoute: GPXElement {
     /// ---------------------------------
 
     /** GPS name of route. */
-    var name: String?
+    public var name: String?
 
     /** GPS comment for route. */
-    var comment: String?
+    public var comment: String?
 
     /** User description of route. */
-    var desc: String?
+    public var desc: String?
 
     /** Source of data. Included to give user some idea of reliability and accuracy of data. */
-    var source: String?
+    public var source: String?
 
     /** Links to external information about the route. */
-    var links: [GPXLink] = [];
+    public var links: [GPXLink] = [];
 
     /** GPS route number. */
     var number: Int? {
@@ -51,10 +51,10 @@ public class GPXRoute: GPXElement {
     private var numberValue: String?
 
     /** Type (classification) of route. */
-    var type: String?
+    public var type: String?
 
     /** You can add extend GPX by adding your own elements from another schema here. */
-    var extensions: GPXExtensions?
+    public var extensions: GPXExtensions?
 
     /** A list of route points. */
     var routePoints: [GPXRoutePoint] = [];
@@ -77,7 +77,7 @@ public class GPXRoute: GPXElement {
         routePoints = self.childElementsOfClass(GPXRoutePoint.self, xmlElement: element) as! [GPXRoutePoint]
     }
     
-    override init(parent: GPXElement? = nil) {
+    override public init(parent: GPXElement? = nil) {
         super.init(parent: parent);
     }
     
@@ -91,7 +91,7 @@ public class GPXRoute: GPXElement {
      @param href URL of hyperlink
      @return A newly created link element.
      */
-    func newLink(withHref href: String) -> GPXLink {
+    public func newLink(withHref href: String) -> GPXLink {
         let link = GPXLink(withHref: href);
         self.addLink(link);
         return link;
@@ -104,7 +104,7 @@ public class GPXRoute: GPXElement {
     /** Inserts a given GPXLink object at the end of the link array.
      @param link The GPXLink to add to the end of the link array.
      */
-    func addLink(_ link: GPXLink) {
+    public func addLink(_ link: GPXLink) {
         let index = links.firstIndex(of: link);
         if (index == nil) {
             link.parent = self;
@@ -115,7 +115,7 @@ public class GPXRoute: GPXElement {
     /** Adds the GPXLink objects contained in another given array to the end of the link array.
      @param links An array of GPXLink objects to add to the end of the link array.
      */
-    func addLinks(_ links: [GPXLink]) {
+    public func addLinks(_ links: [GPXLink]) {
         for link in links {
             self.addLink(link);
         }
@@ -128,7 +128,7 @@ public class GPXRoute: GPXElement {
     /** Removes all occurrences in the link array of a given GPXLink object.
      @param link The GPXLink object to remove from the link array.
      */
-    func removeLink(_ link: GPXLink) {
+    public func removeLink(_ link: GPXLink) {
         if let index = links.firstIndex(of: link) {
             link.parent = nil;
             links.remove(at: index);
@@ -144,7 +144,7 @@ public class GPXRoute: GPXElement {
      @param longitude The longitude of the point.
      @return A newly created routepoint element.
      */
-    func newRoutePoint(withLatitude latitude: Double, longitude: Double) -> GPXRoutePoint {
+    public func newRoutePoint(withLatitude latitude: Double, longitude: Double) -> GPXRoutePoint {
         let routePoint = GPXRoutePoint(latitude: latitude, longitude: longitude);
         self.addRoutePoint(routePoint);
         return routePoint;
@@ -154,7 +154,7 @@ public class GPXRoute: GPXElement {
      @param location The location of the point.
      @return A newly created routepoint element.
      */
-    func newRoutePoint(withLocation location: CLLocation) -> GPXRoutePoint {
+    public func newRoutePoint(withLocation location: CLLocation) -> GPXRoutePoint {
         let routePoint = GPXRoutePoint(location: location);
         self.addRoutePoint(routePoint);
         return routePoint;
@@ -167,7 +167,7 @@ public class GPXRoute: GPXElement {
     /** Inserts a given GPXRoutePoint object at the end of the routepoint array.
      @param routePoint The GPXRoutePoint to add to the end of the routepoint array.
      */
-    func addRoutePoint(_ routePoint: GPXRoutePoint) {
+    public func addRoutePoint(_ routePoint: GPXRoutePoint) {
         let index = routePoints.firstIndex(of: routePoint);
         if (index == nil) {
             routePoint.parent = self;
@@ -178,7 +178,7 @@ public class GPXRoute: GPXElement {
     /** Adds the GPXRoutePoint objects contained in another given array to the end of the routepoint array.
      @param routePoints An array of GPXRoutePoint objects to add to the end of the routepoint array.
      */
-    func addRoutePoints(_ routePoints: [GPXRoutePoint]) {
+    public func addRoutePoints(_ routePoints: [GPXRoutePoint]) {
         for routePoint in routePoints {
             self.addRoutePoint(routePoint);
         }
@@ -191,7 +191,7 @@ public class GPXRoute: GPXElement {
     /** Removes all occurrences in the routepoint array of a given GPXRoutePoint object.
      @param routePoint The GPXRoutePoint object to remove from the routepoint array.
      */
-    func removeRoutePoint(_ routePoint: GPXRoutePoint) {
+    public func removeRoutePoint(_ routePoint: GPXRoutePoint) {
         if let index = routePoints.firstIndex(of: routePoint) {
             routePoint.parent = nil;
             routePoints.remove(at: index);

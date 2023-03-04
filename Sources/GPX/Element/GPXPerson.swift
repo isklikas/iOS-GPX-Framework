@@ -14,13 +14,13 @@ public class GPXPerson: GPXElement {
     /// @name Accessing Properties
     /// ---------------------------------
     /** Name of person or organization. */
-    var name: String?
+    public var name: String?
 
     /** Email address. */
-    var email: GPXEmail?
+    public var email: GPXEmail?
 
     /** Link to Web site or other external information about person. */
-    var link: GPXLink?
+    public var link: GPXLink?
     
     //MARK: Instance
     required init(withXMLElement element: GPXXMLElement, parent: GPXElement? = nil) {

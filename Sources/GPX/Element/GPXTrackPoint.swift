@@ -21,7 +21,7 @@ public class GPXTrackPoint: GPXWaypoint {
      @param longitude The longitude of the point.
      @return A newly created trackpoint element.
      */
-    override init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    override public init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         super.init(latitude: latitude, longitude: longitude);
     }
     
@@ -29,7 +29,7 @@ public class GPXTrackPoint: GPXWaypoint {
      - Parameter location: The location of the object.
      - Returns: A newly created waypoint element.
      */
-    override init(location: CLLocation) {
+    override public init(location: CLLocation) {
         super.init(location: location);
     }
     

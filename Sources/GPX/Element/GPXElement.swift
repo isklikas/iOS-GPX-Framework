@@ -32,12 +32,12 @@ public class GPXElement: NSObject {
     
     //MARK: Instance
     
-    required init(withXMLElement element: GPXXMLElement, parent: GPXElement? = nil) {
+    required public init(withXMLElement element: GPXXMLElement, parent: GPXElement? = nil) {
         self.parent = parent
         super.init();
     }
     
-    init(parent: GPXElement? = nil) {
+    public init(parent: GPXElement? = nil) {
         self.parent = parent
         super.init();
     }

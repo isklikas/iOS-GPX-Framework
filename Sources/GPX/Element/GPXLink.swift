@@ -16,13 +16,13 @@ public class GPXLink: GPXElement {
     /// ---------------------------------
 
     /** Text of hyperlink. */
-    var text:String?
+    public var text:String?
 
     /** Mime type of content (image/jpeg) */
-    var mimetype:String?
+    public var mimetype:String?
 
     /** URL of hyperlink. */
-    var href:String = "";
+    public var href:String = "";
 
 
     /// ---------------------------------
@@ -37,7 +37,7 @@ public class GPXLink: GPXElement {
         self.href = self.valueOfAttributeNamed("href", xmlElement: element, required: true) ?? "";
     }
     
-    required override init(parent: GPXElement? = nil) {
+    required override public init(parent: GPXElement? = nil) {
         super.init(parent: parent);
     }
     
@@ -46,7 +46,7 @@ public class GPXLink: GPXElement {
      @param href URL of hyperlink
      @return A newly created link element.
      */
-    init(withHref href: String) {
+    public init(withHref href: String) {
         self.href = href;
         super.init()
     }

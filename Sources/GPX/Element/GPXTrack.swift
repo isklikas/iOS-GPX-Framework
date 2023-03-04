@@ -17,19 +17,19 @@ public class GPXTrack: GPXElement {
     /// ---------------------------------
 
     /** GPS name of track. */
-    var name: String?
+    public var name: String?
 
     /** GPS comment for track. */
-    var comment: String?
+    public var comment: String?
 
     /** User description of track. */
-    var desc: String?
+    public var desc: String?
 
     /** Source of data. Included to give user some idea of reliability and accuracy of data. */
-    var source: String?
+    public var source: String?
 
     /** Links to external information about track. */
-    var links: [GPXLink] = [];
+    public var links: [GPXLink] = [];
 
     /** GPS track number. */
     var number: Int? {
@@ -51,15 +51,15 @@ public class GPXTrack: GPXElement {
     private var numberValue: String?
 
     /** Type (classification) of track. */
-    var type: String?
+    public var type: String?
 
     /** You can add extend GPX by adding your own elements from another schema here. */
-    var extensions: GPXExtensions?
+    public var extensions: GPXExtensions?
 
     /** A Track Segment holds a list of Track Points which are logically connected in order.
         To represent a single GPS track where GPS reception was lost, or the GPS receiver was turned off,
         start a new Track Segment for each continuous span of track data. */
-    var tracksegments: [GPXTrackSegment] = [];
+    public var tracksegments: [GPXTrackSegment] = [];
     
     //MARK: Instance
     required init(withXMLElement element: GPXXMLElement, parent: GPXElement? = nil) {
@@ -78,7 +78,7 @@ public class GPXTrack: GPXElement {
         tracksegments = self.childElementsOfClass(GPXTrackSegment.self, xmlElement: element) as! [GPXTrackSegment]
     }
     
-    override init(parent: GPXElement? = nil) {
+    override public init(parent: GPXElement? = nil) {
         super.init(parent: parent);
     }
     
@@ -90,7 +90,7 @@ public class GPXTrack: GPXElement {
      @param href URL of hyperlink
      @return A newly created link element.
      */
-    func newLink(withHref href: String) -> GPXLink {
+    public func newLink(withHref href: String) -> GPXLink {
         let link = GPXLink(withHref: href);
         self.addLink(link);
         return link;
@@ -103,7 +103,7 @@ public class GPXTrack: GPXElement {
     /** Inserts a given GPXLink object at the end of the link array.
      @param link The GPXLink to add to the end of the link array.
      */
-    func addLink(_ link: GPXLink) {
+    public func addLink(_ link: GPXLink) {
         let index = links.firstIndex(of: link);
         if (index == nil) {
             link.parent = self;
@@ -114,7 +114,7 @@ public class GPXTrack: GPXElement {
     /** Adds the GPXLink objects contained in another given array to the end of the link array.
      @param array An array of GPXLink objects to add to the end of the link array.
      */
-    func addLinks(_ links: [GPXLink]) {
+    public func addLinks(_ links: [GPXLink]) {
         for link in links {
             self.addLink(link);
         }
@@ -127,7 +127,7 @@ public class GPXTrack: GPXElement {
     /** Removes all occurrences in the link array of a given GPXLink object.
      @param link The GPXLink object to remove from the link array.
      */
-    func removeLink(_ link: GPXLink) {
+    public func removeLink(_ link: GPXLink) {
         if let index = links.firstIndex(of: link) {
             link.parent = nil;
             links.remove(at: index);
@@ -141,7 +141,7 @@ public class GPXTrack: GPXElement {
     /** Creates and returns a new tracksegment element.
      @return A newly created tracksegment element.
      */
-    func newTrackSegment() -> GPXTrackSegment {
+    public func newTrackSegment() -> GPXTrackSegment {
         let trackSegment = GPXTrackSegment();
         self.addTracksegment(trackSegment);
         return trackSegment;
@@ -154,7 +154,7 @@ public class GPXTrack: GPXElement {
     /** Inserts a given GPXTrackSegment object at the end of the tracksegment array.
      @param tracksegment The GPXTrackSegment to add to the end of the tracksegment array.
      */
-    func addTracksegment(_ tracksegment: GPXTrackSegment) {
+    public func addTracksegment(_ tracksegment: GPXTrackSegment) {
         let index = tracksegments.firstIndex(of: tracksegment);
         if (index == nil) {
             tracksegment.parent = self;
@@ -165,7 +165,7 @@ public class GPXTrack: GPXElement {
     /** Adds the GPXTrackSegment objects contained in another given array to the end of the tracksegment array.
      @param array An array of GPXTrackSegment objects to add to the end of the tracksegment array.
      */
-    func addTracksegments(_ tracksegments: [GPXTrackSegment]) {
+    public func addTracksegments(_ tracksegments: [GPXTrackSegment]) {
         for tracksegment in tracksegments {
             self.addTracksegment(tracksegment);
         }
@@ -178,7 +178,7 @@ public class GPXTrack: GPXElement {
     /** Removes all occurrences in the tracksegment array of a given GPXTrackSegment object.
      @param tracksegment The GPXTrackSegment object to remove from the tracksegment array.
      */
-    func removeTracksegment(_ tracksegment: GPXTrackSegment) {
+    public func removeTracksegment(_ tracksegment: GPXTrackSegment) {
         if let index = tracksegments.firstIndex(of: tracksegment) {
             tracksegment.parent = nil;
             tracksegments.remove(at: index);
@@ -235,7 +235,7 @@ public class GPXTrack: GPXElement {
      @param longitude The longitude of the point.
      @return A newly created trackpoint element.
      */
-    func newTrackpoint(withLatitude latitude: Double, longitude: Double) -> GPXTrackPoint {
+    public func newTrackpoint(withLatitude latitude: Double, longitude: Double) -> GPXTrackPoint {
         
         var newTrackSegment: GPXTrackSegment?
         
@@ -254,7 +254,7 @@ public class GPXTrack: GPXElement {
      @param location The location of the point.
      @return A newly created trackpoint element.
      */
-    func newTrackpoint(withLocation location: CLLocation) -> GPXTrackPoint {
+    public func newTrackpoint(withLocation location: CLLocation) -> GPXTrackPoint {
         
         var newTrackSegment: GPXTrackSegment?
         

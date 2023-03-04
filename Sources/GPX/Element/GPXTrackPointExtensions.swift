@@ -10,7 +10,7 @@ import Foundation
 public class GPXTrackPointExtensions: GPXElement {
     
     /* see: http://www8.garmin.com/xmlschemas/TrackPointExtensionv2.xsd */
-    var heartRate: Int? {
+    public var heartRate: Int? {
         get {
             if let heartRateString = self.heartRateString {
                 return GPXType.nonNegativeInteger(heartRateString);
@@ -27,7 +27,7 @@ public class GPXTrackPointExtensions: GPXElement {
         }
     }
     private var heartRateString: String?
-    var cadence: Int? {
+    public var cadence: Int? {
         get {
             if let cadenceString = self.cadenceString {
                 return GPXType.nonNegativeInteger(cadenceString);
@@ -44,7 +44,7 @@ public class GPXTrackPointExtensions: GPXElement {
         }
     }
     private var cadenceString: String?
-    var speed: Double? {
+    public var speed: Double? {
         get {
             if let speedString = self.speedString {
                 return GPXType.decimal(speedString);
@@ -61,7 +61,7 @@ public class GPXTrackPointExtensions: GPXElement {
         }
     }
     private var speedString: String?
-    var course: Double? {
+    public var course: Double? {
         get {
             if let courseString = self.courseString {
                 return GPXType.decimal(courseString);

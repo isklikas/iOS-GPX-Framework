@@ -17,22 +17,22 @@ public class GPXMetadata: GPXElement {
     /// ---------------------------------
 
     /** The name of the GPX file. */
-    var name: String?
+    public var name: String?
 
     /** A description of the contents of the GPX file. */
-    var desc: String?
+    public var desc: String?
 
     /** The person or organization who created the GPX file. */
-    var author: GPXAuthor?
+    public var author: GPXAuthor?
 
     /** Copyright and license information governing use of the file. */
-    var copyright: GPXCopyright?
+    public var copyright: GPXCopyright?
 
     /** URLs associated with the location described in the file. */
-    var link: GPXLink?
+    public var link: GPXLink?
 
     /** The creation date of the file. */
-    var time: Date? {
+    public var time: Date? {
         get {
             return GPXType.dateTime(timeValue);
         }
@@ -48,7 +48,7 @@ public class GPXMetadata: GPXElement {
     private var timeValue: String = ""
 
     /** Keywords associated with the file. Search engines or databases can use this information to classify the data. */
-    var keywords: String?
+    public var keywords: String?
 
     /** Minimum and maximum coordinates which describe the extent of the coordinates in the file. */
     var bounds: GPXBounds?

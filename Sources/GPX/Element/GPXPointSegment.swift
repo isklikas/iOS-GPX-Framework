@@ -19,7 +19,7 @@ public class GPXPointSegment: GPXElement {
     var points: [GPXPoint] = [];
     
     //MARK: Instance
-    required override init(parent: GPXElement? = nil) {
+    required override public init(parent: GPXElement? = nil) {
         super.init()
     }
     
@@ -40,7 +40,7 @@ public class GPXPointSegment: GPXElement {
      @param longitude The longitude of the point.
      @return A newly created point element.
      */
-    func newPoint(withLatitude latitude: CGFloat, longitude: CGFloat) -> GPXPoint {
+    public func newPoint(withLatitude latitude: CGFloat, longitude: CGFloat) -> GPXPoint {
         let point = GPXPoint(latitude: latitude, longitude: longitude);
         self.addPoint(point)
         return point
@@ -50,7 +50,7 @@ public class GPXPointSegment: GPXElement {
      @param location The location of the point.
      @return A newly created point element.
      */
-    func newPoint(withLocation location: CLLocation) -> GPXPoint {
+    public func newPoint(withLocation location: CLLocation) -> GPXPoint {
         let point = GPXPoint(location: location);
         self.addPoint(point)
         return point
@@ -64,7 +64,7 @@ public class GPXPointSegment: GPXElement {
     /** Inserts a given GPXPoint object at the end of the point array.
      @param point The GPXPoint to add to the end of the point array.
      */
-    func addPoint(_ point: GPXPoint?) {
+    public func addPoint(_ point: GPXPoint?) {
         if let point = point,
            points.firstIndex(of: point) == nil {
             point.parent = self;
@@ -75,7 +75,7 @@ public class GPXPointSegment: GPXElement {
     /** Adds the GPXPoint objects contained in another given array to the end of the point array.
      @param array An array of GPXPoint objects to add to the end of the point array.
      */
-    func addPoints(_ array: [GPXPoint]) {
+    public func addPoints(_ array: [GPXPoint]) {
         for point in array {
             self.addPoint(point);
         }
@@ -89,7 +89,7 @@ public class GPXPointSegment: GPXElement {
     /** Removes all occurrences in the point array of a given GPXPoint object.
      @param point The GPXPoint object to remove from the point array.
      */
-    func removePoint(_ point: GPXPoint) {
+    public func removePoint(_ point: GPXPoint) {
         if let index = points.firstIndex(of: point) {
             point.parent = nil;
             points.remove(at: index)

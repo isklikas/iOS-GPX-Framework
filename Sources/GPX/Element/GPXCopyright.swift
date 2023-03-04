@@ -18,13 +18,13 @@ public class GPXCopyright: GPXElement {
     /// ---------------------------------
 
     /** Year of copyright. */
-    var year: Date?
+    public var year: Date?
 
     /** Link to external file containing license text. */
-    var license: String?
+    public var license: String?
 
     /** Copyright holder (TopoSoft, Inc.) */
-    var author: String = "";
+    public var author: String = "";
     
     
     /// ---------------------------------
@@ -49,7 +49,7 @@ public class GPXCopyright: GPXElement {
      @param author Copyright holder (TopoSoft, Inc.)
      @return A newly created copyright element.
      */
-    class func copyrightWithAuthor(author: String) -> GPXCopyright {
+    class public func copyrightWithAuthor(author: String) -> GPXCopyright {
         let copyright = self.init()
         copyright.author = author;
         return copyright;

@@ -40,7 +40,7 @@ public class GPXBounds: GPXElement {
      @param maxLongitude The maximum longitude.
      @return A newly created bounds element.
      */
-    init(minLatitude: CLLocationDegrees? = nil, minLongitude: CLLocationDegrees? = nil, maxLatitude: CLLocationDegrees? = nil, maxLongitude: CLLocationDegrees? = nil) {
+    public init(minLatitude: CLLocationDegrees? = nil, minLongitude: CLLocationDegrees? = nil, maxLatitude: CLLocationDegrees? = nil, maxLongitude: CLLocationDegrees? = nil) {
         self.minLatitude = minLatitude
         self.minLongitude = minLongitude
         self.maxLatitude = maxLatitude

@@ -17,7 +17,7 @@ public class GPXWaypoint: GPXElement {
     /// ---------------------------------
 
     /** Elevation (in meters) of the point. */
-    var elevation: CLLocationDistance? {
+    public var elevation: CLLocationDistance? {
         get {
             if let elevationValue = elevationValue {
                 return GPXType.decimal(elevationValue)
@@ -33,7 +33,7 @@ public class GPXWaypoint: GPXElement {
     private var elevationValue: String?
 
     /// Returns nil if elevation is not present in waypoint information.
-    var elevationBoxed: Double? {
+    public var elevationBoxed: Double? {
         get {
             return self.elevation;
         }
@@ -43,7 +43,7 @@ public class GPXWaypoint: GPXElement {
         Date and time in are in Univeral Coordinated Time (UTC), not local time!
         Conforms to ISO 8601 specification for date/time representation.
         Fractional seconds are allowed for millisecond timing in tracklogs */
-    var time: Date? {
+    public var time: Date? {
         get {
             if let timeValue = timeValue {
                 return GPXType.dateTime(timeValue)
@@ -59,7 +59,7 @@ public class GPXWaypoint: GPXElement {
     private var timeValue: String?
 
     /** Magnetic variation (in degrees) at the point */
-    var magneticVariation: Double? {
+    public var magneticVariation: Double? {
         get {
             if let magneticVariationValue = magneticVariationValue {
                 return GPXType.degress(magneticVariationValue)
@@ -75,7 +75,7 @@ public class GPXWaypoint: GPXElement {
     private var magneticVariationValue: String?
 
     /** Height (in meters) of geoid (mean sea level) above WGS84 earth ellipsoid. As defined in NMEA GGA message. */
-    var geoidHeight: CLLocationDistance? {
+    public var geoidHeight: CLLocationDistance? {
         get {
             if let geoidHeightValue = geoidHeightValue {
                 return GPXType.decimal(geoidHeightValue)
@@ -93,30 +93,30 @@ public class GPXWaypoint: GPXElement {
     /** The GPS name of the waypoint. This field will be transferred to and from the GPS.
         GPX does not place restrictions on the length of this field or the characters contained in it.
         It is up to the receiving application to validate the field before sending it to the GPS. */
-    var name: String?
+    public var name: String?
 
     /** GPS waypoint comment. Sent to GPS as comment. */
-    var comment: String?
+    public var comment: String?
 
     /** A text description of the element. Holds additional information about the element intended for the user, not the GPS. */
-    var desc: String?
+    public var desc: String?
 
     /** Source of data. Included to give user some idea of reliability and accuracy of data.
         "Garmin eTrex", "USGS quad Boston North", e.g. */
-    var source: String?
+    public var source: String?
 
     /** Link to additional information about the waypoint. */
-    var links: [GPXElement]?
+    public var links: [GPXElement]?
 
     /** Text of GPS symbol name. For interchange with other programs, use the exact spelling of the symbol as displayed on the GPS.
         If the GPS abbreviates words, spell them out. */
-    var symbol: String?
+    public var symbol: String?
 
     /** Type (classification) of the waypoint. */
-    var type: String?
+    public var type: String?
 
     /** Instantaneous speed at the point in m/s. */
-    var speed: Double? {
+    public var speed: Double? {
         get {
             if let speedValue = speedValue {
                 return Double(speedValue)
@@ -132,7 +132,7 @@ public class GPXWaypoint: GPXElement {
     private var speedValue: String?
 
     /** Instantaneous course at the point. */
-    var course: Double? {
+    public var course: Double? {
         get {
             if let courseValue = courseValue {
                 return Double(courseValue)
@@ -164,7 +164,7 @@ public class GPXWaypoint: GPXElement {
     private var fixValue: String?
 
     /** Number of satellites used to calculate the GPX fix. */
-    var satellites: Int? {
+    public var satellites: Int? {
         get {
             if let satellitesValue = satellitesValue {
                 return GPXType.nonNegativeInteger(satellitesValue)
@@ -180,7 +180,7 @@ public class GPXWaypoint: GPXElement {
     private var satellitesValue: String?
 
     /** Horizontal dilution of precision. */
-    var horizontalDilution: Double? {
+    public var horizontalDilution: Double? {
         get {
             if let horizontalDilutionValue = horizontalDilutionValue {
                 return GPXType.decimal(horizontalDilutionValue)
@@ -196,7 +196,7 @@ public class GPXWaypoint: GPXElement {
     private var horizontalDilutionValue: String?
 
     /** Vertical dilution of precision. */
-    var verticalDilution: Double? {
+    public var verticalDilution: Double? {
         get {
             if let verticalDilutionValue = verticalDilutionValue {
                 return GPXType.decimal(verticalDilutionValue)
@@ -212,7 +212,7 @@ public class GPXWaypoint: GPXElement {
     private var verticalDilutionValue: String?
 
     /** Position dilution of precision. */
-    var positionDilution: Double? {
+    public var positionDilution: Double? {
         get {
             if let positionDilutionValue = positionDilutionValue {
                 return GPXType.decimal(positionDilutionValue)
@@ -228,7 +228,7 @@ public class GPXWaypoint: GPXElement {
     private var positionDilutionValue: String?
 
     /** Number of seconds since last DGPS update. */
-    var ageOfDGPSData: Double? {
+    public var ageOfDGPSData: Double? {
         get {
             if let ageOfDGPSDataValue = ageOfDGPSDataValue {
                 return GPXType.decimal(ageOfDGPSDataValue)
@@ -244,7 +244,7 @@ public class GPXWaypoint: GPXElement {
     private var ageOfDGPSDataValue: String?
 
     /** ID of DGPS station used in differential correction. */
-    var DGPSid: Int? {
+    public var DGPSid: Int? {
         get {
             if let DGPSidValue = DGPSidValue {
                 return GPXType.dgpsStation(DGPSidValue)
@@ -260,10 +260,10 @@ public class GPXWaypoint: GPXElement {
     private var DGPSidValue: String?
 
     /** You can add extend GPX by adding your own elements from another schema here. */
-    var extensions: GPXExtensions?
+    public var extensions: GPXExtensions?
 
     /** The latitude of the point. Decimal degrees, WGS84 datum. */
-    var latitude: CLLocationDegrees? {
+    public var latitude: CLLocationDegrees? {
         get {
             if let latitudeValue = latitudeValue {
                 return GPXType.latitude(latitudeValue)
@@ -279,7 +279,7 @@ public class GPXWaypoint: GPXElement {
     private var latitudeValue: String?
 
     /** The longitude of the point. Decimal degrees, WGS84 datum. */
-    var longitude: CLLocationDegrees? {
+    public var longitude: CLLocationDegrees? {
         get {
             if let longitudeValue = longitudeValue {
                 return GPXType.longitude(longitudeValue)
@@ -304,7 +304,7 @@ public class GPXWaypoint: GPXElement {
      - Parameter location: The location of the object.
      - Returns: A newly created waypoint element.
      */
-    init(location: CLLocation) {
+    public init(location: CLLocation) {
         let latitude = location.coordinate.latitude;
         let longitude = location.coordinate.longitude;
         let altitude = location.altitude;
@@ -321,7 +321,7 @@ public class GPXWaypoint: GPXElement {
      - Parameter longitude: The longitude of the point.
      - Returns: A newly created waypoint element.
      */
-    init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    public init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         super.init()
         self.latitude = latitude;
         self.longitude = longitude;
@@ -369,7 +369,7 @@ public class GPXWaypoint: GPXElement {
      - Parameter href: URL of hyperlink
      - Returns: A newly created link element.
      */
-    func newLinkWithHref(_ href: String) -> GPXLink {
+    public func newLinkWithHref(_ href: String) -> GPXLink {
         let link = GPXLink(withHref: href);
         self.addLink(link);
         return link;
@@ -382,7 +382,7 @@ public class GPXWaypoint: GPXElement {
     /** Inserts a given GPXLink object at the end of the link array.
      - Parameter link: The GPXLink to add to the end of the link array.
      */
-    func addLink(_ link: GPXLink) {
+    public func addLink(_ link: GPXLink) {
         if links?.firstIndex(of: link) == nil {
             link.parent = self;
             links?.append(link);
@@ -392,7 +392,7 @@ public class GPXWaypoint: GPXElement {
     /** Adds the GPXLink objects contained in another given array to the end of the link array.
      - Parameter array: An array of GPXLink objects to add to the end of the link array.
      */
-    func addLinks(_ array: [GPXLink]) {
+    public func addLinks(_ array: [GPXLink]) {
         for link in array {
             self.addLink(link);
         }
@@ -406,7 +406,7 @@ public class GPXWaypoint: GPXElement {
     /** Removes all occurrences in the link array of a given GPXLink object.
      - Parameter link: The GPXLink object to remove from the link array.
      */
-    func removeLink(_ link: GPXLink) {
+    public func removeLink(_ link: GPXLink) {
         if let index = links?.firstIndex(of: link) {
             link.parent = nil;
             links?.remove(at: index);

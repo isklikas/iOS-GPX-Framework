@@ -21,11 +21,11 @@ public class GPXTrackSegment: GPXElement {
     var trackpoints: [GPXTrackPoint] = [];
 
     /** You can add extend GPX by adding your own elements from another schema here. */
-    var extensions: GPXExtensions?
+    public var extensions: GPXExtensions?
     
     //MARK: Instance
     
-    override init(parent: GPXElement? = nil) {
+    override public init(parent: GPXElement? = nil) {
         super.init(parent: parent);
     }
     
@@ -45,7 +45,7 @@ public class GPXTrackSegment: GPXElement {
      @param longitude The longitude of the point.
      @return A newly created trackpoint element.
      */
-    func newTrackpoint(withLatitude latitude: Double, longitude: Double) -> GPXTrackPoint {
+    public func newTrackpoint(withLatitude latitude: Double, longitude: Double) -> GPXTrackPoint {
         let trackpoint = GPXTrackPoint(latitude: latitude, longitude: longitude);
         self.addTrackpoint(trackpoint);
         return trackpoint;
@@ -55,7 +55,7 @@ public class GPXTrackSegment: GPXElement {
      @param location The location of the point.
      @return A newly created trackpoint element.
      */
-    func newTrackpoint(withLocation location: CLLocation) -> GPXTrackPoint {
+    public func newTrackpoint(withLocation location: CLLocation) -> GPXTrackPoint {
         let trackpoint = GPXTrackPoint(location: location);
         self.addTrackpoint(trackpoint);
         return trackpoint;
@@ -69,7 +69,7 @@ public class GPXTrackSegment: GPXElement {
     /** Inserts a given GPXTrackPoint object at the end of the trackpoint array.
      @param trackpoint The GPXTrackPoint to add to the end of the trackpoint array.
      */
-    func addTrackpoint(_ trackpoint: GPXTrackPoint) {
+    public func addTrackpoint(_ trackpoint: GPXTrackPoint) {
         if (trackpoints.firstIndex(of: trackpoint) == nil) {
             trackpoint.parent = self;
             trackpoints.append(trackpoint);
@@ -79,7 +79,7 @@ public class GPXTrackSegment: GPXElement {
     /** Adds the GPXTrackPoint objects contained in another given array to the end of the trackpoint array.
      @param array An array of GPXTrackPoint objects to add to the end of the trackpoint array.
      */
-    func addTrackpoints(_ trackpoints: [GPXTrackPoint]) {
+    public func addTrackpoints(_ trackpoints: [GPXTrackPoint]) {
         for trackpoint in trackpoints {
             self.addTrackpoint(trackpoint);
         }
@@ -92,7 +92,7 @@ public class GPXTrackSegment: GPXElement {
     /** Removes all occurrences in the trackpoint array of a given GPXTrackPoint object.
      @param trackpoint The GPXTrackPoint object to remove from the trackpoint array.
      */
-    func removeTrackpoint(_ trackpoint: GPXTrackPoint) {
+    public func removeTrackpoint(_ trackpoint: GPXTrackPoint) {
         if let tIndex = trackpoints.firstIndex(of: trackpoint) {
             trackpoint.parent = nil;
             trackpoints.remove(at: tIndex);

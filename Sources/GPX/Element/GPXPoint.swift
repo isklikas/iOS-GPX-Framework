@@ -49,7 +49,7 @@ public class GPXPoint: GPXElement {
         }
     }
     
-    override required init(parent: GPXElement? = nil) {
+    override required public init(parent: GPXElement? = nil) {
         super.init(parent: parent);
     }
 
@@ -58,7 +58,7 @@ public class GPXPoint: GPXElement {
      @param longitude The longitude of the point.
      @return A newly created point element.
      */
-    init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    public init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         self.latitude = latitude;
         self.longitude = longitude;
         super.init()
@@ -68,7 +68,7 @@ public class GPXPoint: GPXElement {
      - Parameter location: The location of the object.
      - Returns: A newly created waypoint element.
      */
-    init(location: CLLocation) {
+    public init(location: CLLocation) {
         let latitude = location.coordinate.latitude;
         let longitude = location.coordinate.longitude;
         let altitude = location.altitude;
