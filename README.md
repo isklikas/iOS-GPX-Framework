@@ -41,10 +41,13 @@ How to use?
 
 1. Import the GPX Module:
 
+    ```swift
     import GPX;
+    ```
     
 2. To parse a GPX File, call the parse method, with a class that conforms to the `GPXParsing` protocol. For example:
 
+    ```swift
     let urlPath = Bundle.main.url(forResource: "mystic_basin_trail", withExtension: "gpx");
     let parser = GPXParser(urlPath);
     parser.gpxXMLParser.delegate = self;
@@ -59,9 +62,12 @@ How to use?
     func parser(_ parser: AnyObject, didFailParsingWithError error: Error) {
         print(error.localizedDescription);
     }
+    ```
     
 3. To generate a GPX File
 
+    ```swift
     // Work in progress...
     // Will update in the next few days
+    ```
     
