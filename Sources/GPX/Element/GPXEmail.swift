@@ -43,7 +43,6 @@ public class GPXEmail: GPXElement {
      @param domain half of email address (hotmail.com)
      @return A newly created email element.
      */
-    
     class public func emailWithID(_ emailID: String, domain: String) -> GPXEmail {
         let email = self.init()
         email.emailID = emailID;

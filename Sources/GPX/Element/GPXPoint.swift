@@ -80,6 +80,34 @@ public class GPXPoint: GPXElement {
         self.time = date;
     }
     
+    /// The location parsed by the properties of the Waypoint
+    public func location() -> CLLocation? {
+        //Obviously these two are needed for the location to exist.
+        guard let longitude = self.longitude,
+              let latitude = self.latitude else {
+                  return nil;
+        }
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude);
+        guard let altitude = self.elevation else {
+            return CLLocation(latitude: latitude, longitude: longitude);
+        }
+        guard let timeStamp = self.time else {
+            return CLLocation(coordinate: coordinate, altitude: altitude, horizontalAccuracy: kCLLocationAccuracyBestForNavigation, verticalAccuracy: kCLLocationAccuracyBestForNavigation, timestamp: Date())
+        }
+        return CLLocation(coordinate: coordinate, altitude: altitude, horizontalAccuracy: kCLLocationAccuracyBestForNavigation, verticalAccuracy: kCLLocationAccuracyBestForNavigation, timestamp: timeStamp);
+    }
+    
+    /// The coordinates parsed by the properties of the Waypoint
+    public func coordinates() -> CLLocationCoordinate2D? {
+        //Obviously these two are needed for the coordinates to exist.
+        guard let longitude = self.longitude,
+              let latitude = self.latitude else {
+                  return nil;
+        }
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude);
+        return coordinate;
+    }
+    
     //MARK: Tag
     override class func tagName() -> String? {
         return "pt";
