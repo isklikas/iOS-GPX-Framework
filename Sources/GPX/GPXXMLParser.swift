@@ -77,7 +77,7 @@ public class GPXXMLElement: NSObject {
     }
 }
 
-class GPXXMLAttribute: NSObject {
+public class GPXXMLAttribute: NSObject {
     var name: String
     var value: String
     
@@ -88,9 +88,9 @@ class GPXXMLAttribute: NSObject {
     }
 }
 
-protocol GPXParsing: NSObjectProtocol {
-    func parser(_ parser: GPXXMLParser, didCompleteParsing rootXMLElement: GPXXMLElement);
-    func parser(_ parser: GPXXMLParser, didFailParsingWithError error: Error);
+public protocol GPXParsing: NSObjectProtocol {
+    func parser(_ parser: AnyObject, didCompleteParsing rootXMLElement: GPXXMLElement);
+    func parser(_ parser: AnyObject, didFailParsingWithError error: Error);
 }
 
 class GPXXMLParser: NSObject, XMLParserDelegate {

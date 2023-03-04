@@ -10,7 +10,7 @@ import XCTest
 
 class GPX_SwiftTests: XCTestCase, GPXParsing {
     
-    func parser(_ parser: GPXXMLParser, didCompleteParsing rootXMLElement: GPXXMLElement) {
+    func parser(_ parser: AnyObject, didCompleteParsing rootXMLElement: GPXXMLElement) {
         let root = GPXRoot(withXMLElement: rootXMLElement);
         
         // gpx
@@ -195,7 +195,7 @@ class GPX_SwiftTests: XCTestCase, GPXParsing {
         XCTAssertEqual(trackpoint!.longitude, -71.098173);
     }
     
-    func parser(_ parser: GPXXMLParser, didFailParsingWithError error: Error) {
+    func parser(_ parser: AnyObject, didFailParsingWithError error: Error) {
         print(error.localizedDescription);
     }
     
