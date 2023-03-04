@@ -308,10 +308,12 @@ public class GPXWaypoint: GPXElement {
         let latitude = location.coordinate.latitude;
         let longitude = location.coordinate.longitude;
         let altitude = location.altitude;
+        let date = location.timestamp;
         super.init();
         self.latitude = latitude;
         self.longitude = longitude;
         self.elevation = altitude;
+        self.time = date;
     }
     
     /** Creates and returns a new waypoint element.
