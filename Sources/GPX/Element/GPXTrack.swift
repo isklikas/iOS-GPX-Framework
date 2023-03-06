@@ -194,27 +194,8 @@ public class GPXTrack: GPXElement {
     public func locations() -> [CLLocation] {
         var locations: [CLLocation] = [];
         for segment in self.tracksegments {
-            for point in segment.trackpoints {
-                guard let latitude = point.latitude,
-                      let longitude = point.longitude else {
-                    continue;
-                }
-                guard let altitude = point.elevation else {
-                    let location = CLLocation(latitude: latitude, longitude: longitude);
-                    locations.append(location);
-                    continue;
-                }
-                let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude);
-                
-                guard let date = point.time else {
-                    let location = CLLocation(coordinate: coordinates, altitude: altitude, horizontalAccuracy: kCLLocationAccuracyBestForNavigation, verticalAccuracy: kCLLocationAccuracyBestForNavigation, timestamp: Date());
-                    locations.append(location);
-                    continue;
-                }
-                
-                let location = CLLocation(coordinate: coordinates, altitude: altitude, horizontalAccuracy: kCLLocationAccuracyBestForNavigation, verticalAccuracy: kCLLocationAccuracyBestForNavigation, timestamp: date);
-                locations.append(location);
-            }
+            let segLocations = segment.locations();
+            locations.append(contentsOf: segLocations);
         }
         return locations;
     }

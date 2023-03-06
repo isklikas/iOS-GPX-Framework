@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 /** GPXElement is the root class of GPX element hierarchies.
  */
@@ -227,6 +228,58 @@ public class GPXElement: NSObject {
             result = result + "\t";
         }
         return result;
+    }
+    
+    //MARK: Calculations
+    
+    /**
+     Used to calculate the course angle, in methods where CLLocation arrays are generated
+     - Parameters:
+        - lat1: The original point's latitude
+        - lon1: The original point's longitude
+        - lat2: The next point's latitude
+        - lon2: The next point's longitude
+     - Returns: The course angle (Double)
+     */
+    func getBearing(lat1: Double, lon1: Double, lat2: Double, lon2: Double) -> Double {
+        let latitude1 = lat1.degToRadians();
+        let latitude2 = lat2.degToRadians();
+        let longDiff = (lon2 - lon1).degToRadians();
+        let yParam = sin(longDiff) * cos(latitude2);
+        let xParam = cos(latitude1) * sin(latitude2) - sin(latitude1) * cos(latitude2) * cos(longDiff);
+        
+        let bearingDegAngle = atan2(yParam, xParam).radToDegrees()
+        let bearingAngle = (bearingDegAngle + 360).truncatingRemainder(dividingBy: 360);
+
+        return bearingAngle
+    }
+    
+    /**
+     Used to calculate the speed, in methods where CLLocation arrays are generated
+     - Parameters:
+        - coordinates1: The original point's coordinates
+        - time1: The original point's date
+        - coordinates2: The next point's coordinates
+        - time2: The next point's date
+     - Returns: The course angle (Double)
+     */
+    func getSpeed(coordinates1: CLLocationCoordinate2D, time1: Date, coordinates2: CLLocationCoordinate2D, time2: Date) -> Double {
+        
+        // The location objects
+        let location1 = CLLocation(latitude: coordinates1.latitude, longitude: coordinates1.longitude);
+        let location2 = CLLocation(latitude: coordinates2.latitude, longitude: coordinates2.longitude);
+        
+        // In meters
+        let distance = location2.distance(from: location1);
+        
+        // The times (in seconds)
+        let seconds1 = time1.timeIntervalSince1970;
+        let seconds2 = time2.timeIntervalSince1970;
+        let timeDifference = seconds2 - seconds1;
+        
+        // The speed (in m/s)
+        let speed = distance / timeDifference;
+        return speed;
     }
 
 }

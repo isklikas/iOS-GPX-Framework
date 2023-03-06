@@ -108,26 +108,76 @@ public class GPXTrackSegment: GPXElement {
     
    public func locations() -> [CLLocation] {
        var locations: [CLLocation] = [];
-       for point in trackpoints {
+       for k in 0 ..< trackpoints.count {
+           let point = trackpoints[k];
+           
+           // Latitude and Longitude parsing
            guard let latitude = point.latitude,
                  let longitude = point.longitude else {
                continue;
            }
-           guard let altitude = point.elevation else {
-               let location = CLLocation(latitude: latitude, longitude: longitude);
-               locations.append(location);
-               continue;
-           }
+           // The coordinates parsed
            let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude);
            
-           guard let date = point.time else {
-               let location = CLLocation(coordinate: coordinates, altitude: altitude, horizontalAccuracy: kCLLocationAccuracyBestForNavigation, verticalAccuracy: kCLLocationAccuracyBestForNavigation, timestamp: Date());
+           // With latitude and longitude set, it is possible to calculate
+           // the course angle by iterating through the next object
+           var courseAngle: Double = 0;
+           let l = k + 1;
+           var hasNextObject = false;
+           
+           if (l < trackpoints.count) {
+               // There is a next object
+               hasNextObject = true;
+               let point2 = trackpoints[l];
+               if let latitude2 = point2.latitude,
+                  let longitude2 = point2.longitude {
+                   courseAngle = self.getBearing(lat1: latitude, lon1: longitude, lat2: latitude2, lon2: longitude2)
+               }
+           }
+           else {
+               // This is the last object
+               let previousPoint = locations[k-1];
+               courseAngle = previousPoint.course;
+           }
+           
+           // Altitude variable
+           var altitude: Double = 0;
+           
+           if let elevation = point.elevation {
+               altitude = elevation;
+           }
+           
+           guard let currentTime = point.time else {
+               let location = CLLocation(coordinate: coordinates, altitude: altitude, horizontalAccuracy: kCLLocationAccuracyBestForNavigation, verticalAccuracy: kCLLocationAccuracyBestForNavigation, course: courseAngle, speed: 0, timestamp: Date())
                locations.append(location);
                continue;
            }
            
-           let location = CLLocation(coordinate: coordinates, altitude: altitude, horizontalAccuracy: kCLLocationAccuracyBestForNavigation, verticalAccuracy: kCLLocationAccuracyBestForNavigation, timestamp: date);
-           locations.append(location);
+           if !hasNextObject {
+               // This is the last object
+               let previousPoint = locations[k-1];
+               let previousSpeed = previousPoint.speed;
+               
+               // Location object
+               let location = CLLocation(coordinate: coordinates, altitude: altitude, horizontalAccuracy: kCLLocationAccuracyBestForNavigation, verticalAccuracy: kCLLocationAccuracyBestForNavigation, course: courseAngle, speed: previousSpeed, timestamp: currentTime);
+               locations.append(location);
+           }
+           else {
+               // Speed in m/s
+               var speed: Double = 0;
+               
+               let nextPoint = trackpoints[l];
+               if let nextLatitude = nextPoint.latitude,
+                  let nextLongitude = nextPoint.longitude,
+                  let nextTime = nextPoint.time {
+                   let nextCoordinates = CLLocationCoordinate2D(latitude: nextLatitude, longitude: nextLongitude);
+                   
+                   speed = self.getSpeed(coordinates1: coordinates, time1: currentTime, coordinates2: nextCoordinates, time2: nextTime);
+               }
+               
+               let location = CLLocation(coordinate: coordinates, altitude: altitude, horizontalAccuracy: kCLLocationAccuracyBestForNavigation, verticalAccuracy: kCLLocationAccuracyBestForNavigation, course: courseAngle, speed: speed, timestamp: currentTime);
+               locations.append(location);
+           }
        }
        return locations;
    }

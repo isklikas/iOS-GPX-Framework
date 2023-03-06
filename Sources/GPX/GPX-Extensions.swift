@@ -33,6 +33,24 @@ public extension DispatchQueue {
     }
 }
 
+extension Double {
+    /// Rounds the double to decimal places value
+    func rounded(toPlaces places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+    
+    /// Converts Degress to Radians
+    func degToRadians() -> Double {
+        return self * .pi / 180
+    }
+    
+    /// Converts Radians to Degrees
+    func radToDegrees() -> Double {
+        return self * 180 / .pi
+    }
+}
+
 extension StringProtocol {
     func index<S: StringProtocol>(of string: S, options: String.CompareOptions = []) -> Index? {
         range(of: string, options: options)?.lowerBound
