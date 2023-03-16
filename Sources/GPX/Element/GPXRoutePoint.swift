@@ -16,16 +16,19 @@ public class GPXRoutePoint: GPXWaypoint {
     /// ** Create RoutePoint
     /// ---------------------------------
 
-    /** Creates and returns a new routepoint element.
-     @param latitude The latitude of the point.
-     @param longitude The longitude of the point.
-     @return A newly created routepoint element.
+    /**
+     Creates and returns a new routepoint element.
+     - Parameters:
+        - latitude: The latitude of the point.
+        - longitude: The longitude of the point.
+     - Returns: A newly created routepoint element.
      */
     override public init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         super.init(latitude: latitude, longitude: longitude);
     }
     
-    /** Creates and returns a new waypoint element.
+    /**
+     Creates and returns a new waypoint element.
      - Parameter location: The location of the object.
      - Returns: A newly created waypoint element.
      */

@@ -14,7 +14,7 @@ import CoreLocation
 public class GPXTrackSegment: GPXElement {
     
     /// ---------------------------------
-    /// @name Accessing Properties
+    /// ** Accessing Properties
     /// ---------------------------------
 
     /** A Track Point holds the coordinates, elevation, timestamp, and metadata for a single point in a track. */
@@ -37,13 +37,15 @@ public class GPXTrackSegment: GPXElement {
 
 
     /// ---------------------------------
-    /// @name Creating Trackpoint
+    /// ** Creating Trackpoint
     /// ---------------------------------
 
-    /** Creates and returns a new trackpoint element.
-     @param latitude The latitude of the point.
-     @param longitude The longitude of the point.
-     @return A newly created trackpoint element.
+    /**
+     Creates and returns a new trackpoint element.
+     - Parameters:
+        - latitude: The latitude of the point.
+        - longitude: The longitude of the point.
+     - Returns: A newly created trackpoint element.
      */
     public func newTrackpoint(withLatitude latitude: Double, longitude: Double) -> GPXTrackPoint {
         let trackpoint = GPXTrackPoint(latitude: latitude, longitude: longitude);
@@ -51,9 +53,10 @@ public class GPXTrackSegment: GPXElement {
         return trackpoint;
     }
     
-    /** Creates and returns a new trackpoint element.
-     @param location The location of the point.
-     @return A newly created trackpoint element.
+    /**
+     Creates and returns a new trackpoint element.
+     - Parameter location: The location of the point.
+     - Returns: A newly created trackpoint element.
      */
     public func newTrackpoint(withLocation location: CLLocation) -> GPXTrackPoint {
         let trackpoint = GPXTrackPoint(location: location);
@@ -63,11 +66,12 @@ public class GPXTrackSegment: GPXElement {
 
 
     /// ---------------------------------
-    /// @name Adding Trackpoint
+    /// ** Adding Trackpoint
     /// ---------------------------------
 
-    /** Inserts a given GPXTrackPoint object at the end of the trackpoint array.
-     @param trackpoint The GPXTrackPoint to add to the end of the trackpoint array.
+    /**
+     Inserts a given GPXTrackPoint object at the end of the trackpoint array.
+     - Parameter trackpoint: The GPXTrackPoint to add to the end of the trackpoint array.
      */
     public func addTrackpoint(_ trackpoint: GPXTrackPoint) {
         if (trackpoints.firstIndex(of: trackpoint) == nil) {
@@ -76,8 +80,9 @@ public class GPXTrackSegment: GPXElement {
         }
     }
 
-    /** Adds the GPXTrackPoint objects contained in another given array to the end of the trackpoint array.
-     @param array An array of GPXTrackPoint objects to add to the end of the trackpoint array.
+    /**
+     Adds the GPXTrackPoint objects contained in another given array to the end of the trackpoint array.
+     - Parameter array: An array of GPXTrackPoint objects to add to the end of the trackpoint array.
      */
     public func addTrackpoints(_ trackpoints: [GPXTrackPoint]) {
         for trackpoint in trackpoints {
@@ -86,11 +91,12 @@ public class GPXTrackSegment: GPXElement {
     }
 
     /// ---------------------------------
-    /// @name Removing Trackpoint
+    /// ** Removing Trackpoint
     /// ---------------------------------
 
-    /** Removes all occurrences in the trackpoint array of a given GPXTrackPoint object.
-     @param trackpoint The GPXTrackPoint object to remove from the trackpoint array.
+    /**
+     Removes all occurrences in the trackpoint array of a given GPXTrackPoint object.
+     - Parameter trackpoint: The GPXTrackPoint object to remove from the trackpoint array.
      */
     public func removeTrackpoint(_ trackpoint: GPXTrackPoint) {
         if let tIndex = trackpoints.firstIndex(of: trackpoint) {
@@ -100,7 +106,7 @@ public class GPXTrackSegment: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Returning Transformed Data
+    /// ** Returning Transformed Data
     /// ---------------------------------
     
     /** Returns an array of locations from the points array.

@@ -12,7 +12,7 @@ import Foundation
 public class GPXLink: GPXElement {
 
     /// ---------------------------------
-    /// @name Accessing Properties
+    /// ** Accessing Properties
     /// ---------------------------------
 
     /** Text of hyperlink. */
@@ -26,7 +26,7 @@ public class GPXLink: GPXElement {
 
 
     /// ---------------------------------
-    /// @name Create Link
+    /// ** Create Link
     /// ---------------------------------
 
     //MARK: Instance
@@ -42,9 +42,10 @@ public class GPXLink: GPXElement {
     }
     
     
-    /** Creates and returns a new link element.
-     @param href URL of hyperlink
-     @return A newly created link element.
+    /**
+     Creates and returns a new link element.
+     - Parameter href: URL of hyperlink
+     - Returns: A newly created link element.
      */
     public init(withHref href: String) {
         self.href = href;

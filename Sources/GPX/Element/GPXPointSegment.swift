@@ -12,7 +12,7 @@ import CoreLocation
  */
 public class GPXPointSegment: GPXElement {
     /// ---------------------------------
-    /// @name Accessing Properties
+    /// ** Accessing Properties
     /// ---------------------------------
 
     /** Ordered list of geographic points. */
@@ -32,13 +32,15 @@ public class GPXPointSegment: GPXElement {
     //MARK: Public methods
     
     /// ---------------------------------
-    /// @name Creating Point
+    /// ** Creating Point
     /// ---------------------------------
 
-    /** Creates and returns a new point element.
-     @param latitude The latitude of the point.
-     @param longitude The longitude of the point.
-     @return A newly created point element.
+    /**
+     Creates and returns a new point element.
+     - Parameters:
+        - latitude: The latitude of the point.
+        - longitude: The longitude of the point.
+     - Returns: A newly created point element.
      */
     public func newPoint(withLatitude latitude: CGFloat, longitude: CGFloat) -> GPXPoint {
         let point = GPXPoint(latitude: latitude, longitude: longitude);
@@ -46,9 +48,10 @@ public class GPXPointSegment: GPXElement {
         return point
     }
     
-    /** Creates and returns a new point element.
-     @param location The location of the point.
-     @return A newly created point element.
+    /**
+     Creates and returns a new point element.
+     - Parameter location: The location of the point.
+     - Returns: A newly created point element.
      */
     public func newPoint(withLocation location: CLLocation) -> GPXPoint {
         let point = GPXPoint(location: location);
@@ -58,11 +61,12 @@ public class GPXPointSegment: GPXElement {
     
     
     /// ---------------------------------
-    /// @name Adding Point
+    /// ** Adding Point
     /// ---------------------------------
 
-    /** Inserts a given GPXPoint object at the end of the point array.
-     @param point The GPXPoint to add to the end of the point array.
+    /**
+     Inserts a given GPXPoint object at the end of the point array.
+     - Parameter point: The GPXPoint to add to the end of the point array.
      */
     public func addPoint(_ point: GPXPoint?) {
         if let point = point,
@@ -72,8 +76,9 @@ public class GPXPointSegment: GPXElement {
         }
     }
     
-    /** Adds the GPXPoint objects contained in another given array to the end of the point array.
-     @param array An array of GPXPoint objects to add to the end of the point array.
+    /**
+     Adds the GPXPoint objects contained in another given array to the end of the point array.
+     - Parameter array: An array of GPXPoint objects to add to the end of the point array.
      */
     public func addPoints(_ array: [GPXPoint]) {
         for point in array {
@@ -83,11 +88,12 @@ public class GPXPointSegment: GPXElement {
     
     
     /// ---------------------------------
-    /// @name Removing Point
+    /// ** Removing Point
     /// ---------------------------------
     
-    /** Removes all occurrences in the point array of a given GPXPoint object.
-     @param point The GPXPoint object to remove from the point array.
+    /**
+     Removes all occurrences in the point array of a given GPXPoint object.
+     - Parameter point: The GPXPoint object to remove from the point array.
      */
     public func removePoint(_ point: GPXPoint) {
         if let index = points.firstIndex(of: point) {
@@ -97,10 +103,11 @@ public class GPXPointSegment: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Returning Transformed Data
+    /// ** Returning Transformed Data
     /// ---------------------------------
     
-    /** Returns an array of locations from the points array.
+    /**
+     Returns an array of locations from the points array.
      */
     public func locations() -> [CLLocation] {
         var locations: [CLLocation] = [];

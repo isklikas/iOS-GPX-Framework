@@ -14,7 +14,7 @@ import Foundation
 public class GPXRoot: GPXElement {
     
     /// ---------------------------------
-    /// @name Accessing Properties
+    /// ** Accessing Properties
     /// ---------------------------------
 
     /** The namespace for external XML schemas. */
@@ -48,12 +48,13 @@ public class GPXRoot: GPXElement {
     //MARK: Instance
     
     /// ---------------------------------
-    /// @name Create Root Element
+    /// ** Create Root Element
     /// ---------------------------------
 
-    /** Creates and returns a new root element.
-     @param creator The name or URL of the software.
-     @return A newly created root element.
+    /**
+     Creates and returns a new root element.
+     - Parameter creator: The name or URL of the software.
+     - Returns: A newly created root element.
      */
     public init(withCreator creator: String) {
         super.init();
@@ -97,13 +98,15 @@ public class GPXRoot: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Creating Waypoint
+    /// ** Creating Waypoint
     /// ---------------------------------
 
-    /** Creates and returns a new waypoint element.
-     @param latitude The latitude of the point.
-     @param longitude The longitude of the point.
-     @return A newly created waypoint element.
+    /**
+     Creates and returns a new waypoint element.
+     - Parameters:
+        - latitude: The latitude of the point.
+        - longitude: The longitude of the point.
+     - Returns: A newly created waypoint element.
      */
     public func newWaypoint(withLatitude latitude: Double, longitude: Double) -> GPXWaypoint {
         let waypoint = GPXWaypoint(latitude: latitude, longitude: longitude);
@@ -112,11 +115,12 @@ public class GPXRoot: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Adding Waypoint
+    /// ** Adding Waypoint
     /// ---------------------------------
 
-    /** Inserts a given GPXWaypoint object at the end of the waypoint array.
-     @param waypoint The GPXWaypoint to add to the end of the waypoint array.
+    /**
+     Inserts a given GPXWaypoint object at the end of the waypoint array.
+     - Parameter waypoint: The GPXWaypoint to add to the end of the waypoint array.
      */
     public func addWaypoint(_ waypoint: GPXWaypoint) {
         let index = waypoints.firstIndex(of: waypoint);
@@ -126,8 +130,9 @@ public class GPXRoot: GPXElement {
         }
     }
     
-    /** Adds the GPXWaypoint objects contained in another given array to the end of the waypoint array.
-     @param waypoints An array of GPXWaypoint objects to add to the end of the waypoint array.
+    /**
+     Adds the GPXWaypoint objects contained in another given array to the end of the waypoint array.
+     - Parameter waypoints: An array of GPXWaypoint objects to add to the end of the waypoint array.
      */
     public func addWaypoints(_ waypoints: [GPXWaypoint]) {
         for waypoint in waypoints {
@@ -136,11 +141,12 @@ public class GPXRoot: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Removing Waypoint
+    /// ** Removing Waypoint
     /// ---------------------------------
 
-    /** Removes all occurrences in the waypoint array of a given GPXWaypoint object.
-     @param waypoint The GPXWaypoint object to remove from the waypoint array.
+    /**
+     Removes all occurrences in the waypoint array of a given GPXWaypoint object.
+     - Parameter waypoint: The GPXWaypoint object to remove from the waypoint array.
      */
     public func removeWaypoint(_ waypoint: GPXWaypoint) {
         if let index = self.waypoints.firstIndex(of: waypoint) {
@@ -150,11 +156,12 @@ public class GPXRoot: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Creating Route
+    /// ** Creating Route
     /// ---------------------------------
 
-    /** Creates and returns a new route element.
-     @return A newly created route element.
+    /**
+     Creates and returns a new route element.
+     - Returns: A newly created route element.
      */
     public func newRoute() -> GPXRoute {
         let route = GPXRoute();
@@ -163,11 +170,11 @@ public class GPXRoot: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Adding Route
+    /// ** Adding Route
     /// ---------------------------------
 
     /** Inserts a given GPXRoute object at the end of the route array.
-     @param route The GPXRoute to add to the end of the route array.
+     - Parameter route: The GPXRoute to add to the end of the route array.
      */
     public func addRoute(_ route: GPXRoute) {
         let index = routes.firstIndex(of: route);
@@ -178,7 +185,7 @@ public class GPXRoot: GPXElement {
     }
 
     /** Adds the GPXRoute objects contained in another given array to the end of the route array.
-     @param routes An array of GPXRoute objects to add to the end of the route array.
+     - Parameter routes: An array of GPXRoute objects to add to the end of the route array.
      */
     public func addRoutes(_ routes: [GPXRoute]) {
         for route in routes {
@@ -188,11 +195,12 @@ public class GPXRoot: GPXElement {
 
 
     /// ---------------------------------
-    /// @name Removing Route
+    /// ** Removing Route
     /// ---------------------------------
 
-    /** Removes all occurrences in the route array of a given GPXRoute object.
-     @param route The GPXRoute object to remove from the route array.
+    /**
+     Removes all occurrences in the route array of a given GPXRoute object.
+     - Parameter route: The GPXRoute object to remove from the route array.
      */
     public func removeRoute(_ route: GPXRoute) {
         if let index = self.routes.firstIndex(of: route) {
@@ -203,11 +211,12 @@ public class GPXRoot: GPXElement {
 
 
     /// ---------------------------------
-    /// @name Creating Track
+    /// ** Creating Track
     /// ---------------------------------
 
-    /** Creates and returns a new track element.
-     @return A newly created track element.
+    /**
+     Creates and returns a new track element.
+     - Returns: A newly created track element.
      */
     public func newTrack() -> GPXTrack {
         let track = GPXTrack();
@@ -217,11 +226,12 @@ public class GPXRoot: GPXElement {
 
 
     /// ---------------------------------
-    /// @name Adding Track
+    /// ** Adding Track
     /// ---------------------------------
 
-    /** Inserts a given GPXTrack object at the end of the track array.
-     @param track The GPXTrack to add to the end of the track array.
+    /**
+     Inserts a given GPXTrack object at the end of the track array.
+     - Parameter track: The GPXTrack to add to the end of the track array.
      */
     public func addTrack(_ track: GPXTrack) {
         let index = tracks.firstIndex(of: track);
@@ -231,8 +241,9 @@ public class GPXRoot: GPXElement {
         }
     }
 
-    /** Adds the GPXTrack objects contained in another given array to the end of the track array.
-     @param tracks An array of GPXTrack objects to add to the end of the track array.
+    /**
+     Adds the GPXTrack objects contained in another given array to the end of the track array.
+     - Parameter tracks: An array of GPXTrack objects to add to the end of the track array.
      */
     public func addTracks(_ tracks: [GPXTrack]) {
         for track in tracks {
@@ -241,11 +252,12 @@ public class GPXRoot: GPXElement {
     }
 
     /// ---------------------------------
-    /// @name Removing Track
+    /// ** Removing Track
     /// ---------------------------------
 
-    /** Removes all occurrences in the track array of a given GPXTrack object.
-     @param track The GPXTrack object to remove from the track array.
+    /**
+     Removes all occurrences in the track array of a given GPXTrack object.
+     - Parameter track: The GPXTrack object to remove from the track array.
      */
     public func removeTrack(_ track: GPXTrack) {
         if let index = self.tracks.firstIndex(of: track) {

@@ -14,7 +14,7 @@ public class GPXCopyright: GPXElement {
     
     
     /// ---------------------------------
-    /// @name Accessing Properties
+    /// ** Accessing Properties
     /// ---------------------------------
 
     /** Year of copyright. */
@@ -28,7 +28,7 @@ public class GPXCopyright: GPXElement {
     
     
     /// ---------------------------------
-    /// @name Create Copyright
+    /// ** Create Copyright
     /// ---------------------------------
 
     required init(withXMLElement element: GPXXMLElement, parent: GPXElement? = nil) {
@@ -45,9 +45,10 @@ public class GPXCopyright: GPXElement {
         super.init(parent: parent);
     }
     
-    /** Creates and returns a new copyright element.
-     @param author Copyright holder (TopoSoft, Inc.)
-     @return A newly created copyright element.
+    /**
+     Creates and returns a new copyright element.
+     - Parameter author: Copyright holder (TopoSoft, Inc.)
+     - Returns: A newly created copyright element.
      */
     class public func copyrightWithAuthor(author: String) -> GPXCopyright {
         let copyright = self.init()

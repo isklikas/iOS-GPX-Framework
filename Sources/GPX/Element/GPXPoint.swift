@@ -12,7 +12,7 @@ import CoreLocation
  */
 public class GPXPoint: GPXElement {
     /// ---------------------------------
-    /// @name Accessing Properties
+    /// ** Accessing Properties
     /// ---------------------------------
 
     /** The elevation (in meters) of the point. */
@@ -30,7 +30,7 @@ public class GPXPoint: GPXElement {
     //MARK: Instance
     
     /// ---------------------------------
-    /// @name Create Point
+    /// ** Create Point
     /// ---------------------------------
     
     required init(withXMLElement element: GPXXMLElement, parent: GPXElement? = nil) {
@@ -53,10 +53,12 @@ public class GPXPoint: GPXElement {
         super.init(parent: parent);
     }
 
-    /** Creates and returns a new point element.
-     @param latitude The latitude of the point.
-     @param longitude The longitude of the point.
-     @return A newly created point element.
+    /**
+     Creates and returns a new point element.
+     - Parameters:
+        - latitude: The latitude of the point.
+        - longitude: The longitude of the point.
+     - Returns: A newly created point element.
      */
     public init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         self.latitude = latitude;

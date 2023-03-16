@@ -12,7 +12,7 @@ import CoreLocation
  */
 public class GPXBounds: GPXElement {
     /// ---------------------------------
-    /// @name Accessing Properties
+    /// ** Accessing Properties
     /// ---------------------------------
 
     /** The minimum latitude. */
@@ -30,15 +30,17 @@ public class GPXBounds: GPXElement {
     //MARK: Instance
 
     /// ---------------------------------
-    /// @name Create Bounds
+    /// ** Create Bounds
     /// ---------------------------------
 
-    /** Creates and returns a new bounds element.
-     @param minLatitude The minimum latitude.
-     @param minLongitude The minimum longitude.
-     @param maxLatitude The maximum latitude.
-     @param maxLongitude The maximum longitude.
-     @return A newly created bounds element.
+    /**
+     Creates and returns a new bounds element.
+     - Parameters:
+        - minLatitude: The minimum latitude.
+        - minLongitude: The minimum longitude.
+        - maxLatitude: The maximum latitude.
+        - maxLongitude: The maximum longitude.
+     - Returns: A newly created bounds element.
      */
     public init(minLatitude: CLLocationDegrees? = nil, minLongitude: CLLocationDegrees? = nil, maxLatitude: CLLocationDegrees? = nil, maxLongitude: CLLocationDegrees? = nil) {
         self.minLatitude = minLatitude

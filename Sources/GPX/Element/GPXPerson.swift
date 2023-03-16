@@ -11,7 +11,7 @@ import Foundation
  */
 public class GPXPerson: GPXElement {
     /// ---------------------------------
-    /// @name Accessing Properties
+    /// ** Accessing Properties
     /// ---------------------------------
     /** Name of person or organization. */
     public var name: String?

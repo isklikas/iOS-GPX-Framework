@@ -22,12 +22,13 @@ public class GPXParser: NSObject {
     public weak var delegate: GPXParsing?
     
     /// ---------------------------------
-    /// @name Parsing
+    /// **  Parsing
     /// ---------------------------------
 
-    /** Parsing the GPX content referenced by the given URL.
-- Parameter url: A URL object specifying a URL. The URL must be fully qualified and refer to a scheme that is supported by the NSURL class.
-- Returns: An initialized GPXRoot object or nil if an error occurs.
+    /**
+     Parsing the GPX content referenced by the given URL.
+     - Parameter url: A URL object specifying a URL. The URL must be fully qualified and refer to a scheme that is supported by the URL class.
+     - Returns: An initialized GPXRoot object or nil if an error occurs.
      */
     public init(_ url: URL) {
         self.gpxXMLParser = GPXXMLParser(url: url);
@@ -35,9 +36,10 @@ public class GPXParser: NSObject {
         gpxXMLParser.gpxParser = self;
     }
 
-    /** Parsing the GPX content referenced by the given File path.
-     @param path The absolute path of the file from which to read GPX data.
-     @return An initialized GPXRoot object or nil if an error occurs.
+    /**
+     Parsing the GPX content referenced by the given File path.
+     - Parameter path: The absolute path of the file from which to read GPX data.
+     - Returns: An initialized GPXRoot object or nil if an error occurs.
      */
     public init?(_ path: String) {
         var url: URL?
@@ -55,9 +57,10 @@ public class GPXParser: NSObject {
         gpxXMLParser.gpxParser = self;
     }
 
-    /** Parsing the GPX content referenced by the given GPX string.
-     @param string The GPX string.
-     @return An initialized GPXRoot object or nil if an error occurs.
+    /**
+     Parsing the GPX content referenced by the given GPX string.
+     - Parameter string: The GPX string.
+     - Returns: An initialized GPXRoot object or nil if an error occurs.
      */
     public init(withString string: String) {
         self.gpxXMLParser = GPXXMLParser(string: string);
@@ -65,9 +68,10 @@ public class GPXParser: NSObject {
         gpxXMLParser.gpxParser = self;
     }
 
-    /** Parsing the GPX content referenced by the given data.
-     @param data The data from which to read GPX data.
-     @return An initialized GPXROot object or nil if an error occurs.
+    /**
+     Parsing the GPX content referenced by the given data.
+     - Parameter data: The data from which to read GPX data.
+     - Returns: An initialized GPXROot object or nil if an error occurs.
      */
     public init(withData data: Data) {
         self.gpxXMLParser = GPXXMLParser(data: data);
@@ -75,8 +79,9 @@ public class GPXParser: NSObject {
         gpxXMLParser.gpxParser = self;
     }
     
-    /** Called to start parsing the GPX file.
-     ** IMPORTANT:Only do so after setting your class as GPXParsing delegate
+    /**
+     Called to start parsing the GPX file.
+     - IMPORTANT: Only do so after setting your class as GPXParsing delegate
      */
     public func start() {
         self.gpxXMLParser.startParsing();

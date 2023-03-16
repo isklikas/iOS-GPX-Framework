@@ -13,7 +13,7 @@ import CoreLocation
 public class GPXTrack: GPXElement {
     
     /// ---------------------------------
-    /// @name Accessing Properties
+    /// ** Accessing Properties
     /// ---------------------------------
 
     /** GPS name of track. */
@@ -83,12 +83,13 @@ public class GPXTrack: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Creating Link
+    /// ** Creating Link
     /// ---------------------------------
 
-    /** Creates and returns a new link element.
-     @param href URL of hyperlink
-     @return A newly created link element.
+    /**
+     Creates and returns a new link element.
+     - Parameter href: URL of hyperlink
+     - Returns: A newly created link element.
      */
     public func newLink(withHref href: String) -> GPXLink {
         let link = GPXLink(withHref: href);
@@ -97,11 +98,12 @@ public class GPXTrack: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Adding Link
+    /// ** Adding Link
     /// ---------------------------------
 
-    /** Inserts a given GPXLink object at the end of the link array.
-     @param link The GPXLink to add to the end of the link array.
+    /**
+     Inserts a given GPXLink object at the end of the link array.
+     - Parameter link: The GPXLink to add to the end of the link array.
      */
     public func addLink(_ link: GPXLink) {
         let index = links.firstIndex(of: link);
@@ -111,8 +113,9 @@ public class GPXTrack: GPXElement {
         }
     }
     
-    /** Adds the GPXLink objects contained in another given array to the end of the link array.
-     @param array An array of GPXLink objects to add to the end of the link array.
+    /**
+     Adds the GPXLink objects contained in another given array to the end of the link array.
+     - Parameter array: An array of GPXLink objects to add to the end of the link array.
      */
     public func addLinks(_ links: [GPXLink]) {
         for link in links {
@@ -121,11 +124,12 @@ public class GPXTrack: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Removing Link
+    /// ** Removing Link
     /// ---------------------------------
 
-    /** Removes all occurrences in the link array of a given GPXLink object.
-     @param link The GPXLink object to remove from the link array.
+    /**
+     Removes all occurrences in the link array of a given GPXLink object.
+     - Parameter link: The GPXLink object to remove from the link array.
      */
     public func removeLink(_ link: GPXLink) {
         if let index = links.firstIndex(of: link) {
@@ -135,11 +139,12 @@ public class GPXTrack: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Creating Tracksegment
+    /// ** Creating Tracksegment
     /// ---------------------------------
 
-    /** Creates and returns a new tracksegment element.
-     @return A newly created tracksegment element.
+    /**
+     Creates and returns a new tracksegment element.
+     - Returns: A newly created tracksegment element.
      */
     public func newTrackSegment() -> GPXTrackSegment {
         let trackSegment = GPXTrackSegment();
@@ -148,11 +153,12 @@ public class GPXTrack: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Adding Tracksegment
+    /// ** Adding Tracksegment
     /// ---------------------------------
 
-    /** Inserts a given GPXTrackSegment object at the end of the tracksegment array.
-     @param tracksegment The GPXTrackSegment to add to the end of the tracksegment array.
+    /**
+     Inserts a given GPXTrackSegment object at the end of the tracksegment array.
+     - Parameter tracksegment: The GPXTrackSegment to add to the end of the tracksegment array.
      */
     public func addTracksegment(_ tracksegment: GPXTrackSegment) {
         let index = tracksegments.firstIndex(of: tracksegment);
@@ -162,8 +168,9 @@ public class GPXTrack: GPXElement {
         }
     }
     
-    /** Adds the GPXTrackSegment objects contained in another given array to the end of the tracksegment array.
-     @param array An array of GPXTrackSegment objects to add to the end of the tracksegment array.
+    /**
+     Adds the GPXTrackSegment objects contained in another given array to the end of the tracksegment array.
+     - Parameter array: An array of GPXTrackSegment objects to add to the end of the tracksegment array.
      */
     public func addTracksegments(_ tracksegments: [GPXTrackSegment]) {
         for tracksegment in tracksegments {
@@ -172,11 +179,12 @@ public class GPXTrack: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Removing Tracksegment
+    /// ** Removing Tracksegment
     /// ---------------------------------
 
-    /** Removes all occurrences in the tracksegment array of a given GPXTrackSegment object.
-     @param tracksegment The GPXTrackSegment object to remove from the tracksegment array.
+    /**
+     Removes all occurrences in the tracksegment array of a given GPXTrackSegment object.
+     - Parameter tracksegment: The GPXTrackSegment object to remove from the tracksegment array.
      */
     public func removeTracksegment(_ tracksegment: GPXTrackSegment) {
         if let index = tracksegments.firstIndex(of: tracksegment) {
@@ -186,7 +194,7 @@ public class GPXTrack: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Returning Transformed Data
+    /// ** Returning Transformed Data
     /// ---------------------------------
     
     /** Returns an array of locations from the points array.
@@ -218,13 +226,15 @@ public class GPXTrack: GPXElement {
     }
     
     /// ---------------------------------
-    /// @name Creating Trackpoint
+    /// ** Creating Trackpoint
     /// ---------------------------------
 
-    /** Creates and returns a new trackpoint element.
-     @param latitude The latitude of the point.
-     @param longitude The longitude of the point.
-     @return A newly created trackpoint element.
+    /**
+     Creates and returns a new trackpoint element.
+     - Parameters:
+        - latitude: The latitude of the point.
+        - longitude: The longitude of the point.
+     - Returns: A newly created trackpoint element.
      */
     public func newTrackpoint(withLatitude latitude: Double, longitude: Double) -> GPXTrackPoint {
         
@@ -241,9 +251,10 @@ public class GPXTrack: GPXElement {
         return newTrackSegment!.newTrackpoint(withLatitude: latitude, longitude: longitude);
     }
     
-    /** Creates and returns a new trackpoint element.
-     @param location The location of the point.
-     @return A newly created trackpoint element.
+    /**
+     Creates and returns a new trackpoint element.
+     - Parameter location: The location of the point.
+     - Returns: A newly created trackpoint element.
      */
     public func newTrackpoint(withLocation location: CLLocation) -> GPXTrackPoint {
         

@@ -15,7 +15,7 @@ public class GPXElement: NSObject {
     //Element Properties
     
     /// ---------------------------------
-    /// @name Accessing Element Properties
+    /// ** Accessing Element Properties
     /// ---------------------------------
 
     /** A parent GPXElement of the receiver.

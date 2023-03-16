@@ -12,7 +12,7 @@ import Foundation
 public class GPXEmail: GPXElement {
 
     /// ---------------------------------
-    /// @name Accessing Properties
+    /// ** Accessing Properties
     /// ---------------------------------
 
     /** id half of email address (billgates2004) */
@@ -23,7 +23,7 @@ public class GPXEmail: GPXElement {
 
 
     /// ---------------------------------
-    /// @name Create Email
+    /// ** Create Email
     /// ---------------------------------
     
     required init(withXMLElement element: GPXXMLElement, parent: GPXElement? = nil) {
@@ -38,10 +38,12 @@ public class GPXEmail: GPXElement {
         super.init(parent: parent);
     }
 
-    /** Creates and returns a new email element.
-     @param id half of email address (billgates2004)
-     @param domain half of email address (hotmail.com)
-     @return A newly created email element.
+    /**
+     Creates and returns a new email element.
+     - Parameters:
+        - id: half of email address (billgates2004)
+        - domain: half of email address (hotmail.com)
+     - Returns: A newly created email element.
      */
     class public func emailWithID(_ emailID: String, domain: String) -> GPXEmail {
         let email = self.init()

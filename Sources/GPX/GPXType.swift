@@ -27,18 +27,20 @@ class GPXType: NSObject {
     static var dateFormatter_sszzzz: DateFormatter?
     
 
-    /** Return the CLLocationDegrees object from a given string.
-     @param value The string which to convert CLLocationDegrees. A value ≥−90 and ≤90.
-     @return A CLLocationDegrees from a value.
+    /**
+     Return the CLLocationDegrees object from a given string.
+     - Parameter value: The string which to convert CLLocationDegrees. A value ≥−90 and ≤90.
+     - Returns: A CLLocationDegrees from a value.
      */
     class func latitude(_ value: String) -> CLLocationDegrees? {
         let f = Double(value);
         return f;
     }
 
-    /** Return the NSString object from a given CLLocationDegrees.
-     @param latitude The CLLocationDegrees which to convert NSString. A value ≥−90 and ≤90.
-     @return A NSString from a latitude.
+    /**
+     Return the NSString object from a given CLLocationDegrees.
+     - Parameter latitude: The CLLocationDegrees which to convert NSString. A value ≥−90 and ≤90.
+     - Returns: A NSString from a latitude.
      */
     class func valueForLatitude(_ latitude: CLLocationDegrees) -> String {
         if (latitude >= -90 && latitude <= 90) {
@@ -47,18 +49,20 @@ class GPXType: NSObject {
         return "0";
     }
 
-    /** Return the CLLocationDegrees object from a given string.
-     @param value The string which to convert CGFloat. A value ≥−180 and ≤180.
-     @return A CLLocationDegrees from a value.
+    /**
+     Return the CLLocationDegrees object from a given string.
+     - Parameter value: The string which to convert CGFloat. A value ≥−180 and ≤180.
+     - Returns: A CLLocationDegrees from a value.
      */
    class func longitude(_ value: String) -> CLLocationDegrees? {
        let f = Double(value);
        return f;
    }
 
-    /** Return the NSString object from a given CLLocationDegrees.
-     @param longitude The CLLocationDegrees which to convert NSString. A value ≥−180 and ≤180.
-     @return A NSString from a longitude.
+    /**
+     Return the NSString object from a given CLLocationDegrees.
+     - Parameter longitude: The CLLocationDegrees which to convert NSString. A value ≥−180 and ≤180.
+     - Returns: A NSString from a longitude.
      */
     class func valueForLongitude(_ longitude: CLLocationDegrees) -> String {
         if (longitude >= -180 && longitude <= 180) {
@@ -67,18 +71,20 @@ class GPXType: NSObject {
         return "0";
     }
 
-    /** Return the CLLocationDegrees object from a given string.
-     @param value The string which to convert CLLocationDegrees. A value ≥0 and ≤360.
-     @return A CLLocationDegrees from a value.
+    /**
+     Return the CLLocationDegrees object from a given string.
+     - Parameter value: The string which to convert CLLocationDegrees. A value ≥0 and ≤360.
+     - Returns: A CLLocationDegrees from a value.
      */
     class func degress(_ value: String) -> CLLocationDegrees? {
         let f = Double(value);
         return f;
     }
 
-    /** Return the NSString object from a given CLLocationDegrees.
-     @param degress The CLLocationDegrees which to convert NSString. A value ≥0 and ≤360.
-     @return A NSString from a degress.
+    /**
+     Return the NSString object from a given CLLocationDegrees.
+     - Parameter degress: The CLLocationDegrees which to convert NSString. A value ≥0 and ≤360.
+     - Returns: A NSString from a degress.
      */
     class func valueForDegress(_ degress: CLLocationDegrees) -> String {
         if (degress >= 0 && degress <= 360) {
@@ -87,9 +93,10 @@ class GPXType: NSObject {
         return "0";
     }
 
-    /** Return the GPXFix from a given string.
-     @param value The string which to convert GPXFix.
-     @return A GPXFix from a value.
+    /**
+     Return the GPXFix from a given string.
+     - Parameter value: The string which to convert GPXFix.
+     - Returns: A GPXFix from a value.
      */
     class func fix(_ value: String?) -> GPXFix {
         if let value = value {
@@ -109,9 +116,10 @@ class GPXType: NSObject {
         return .GPXFixNone;
     }
 
-    /** Return the NSString object from a given GPXFix.
-     @param fix The GPXFix which to convert NSString.
-     @return A NSString from a fix.
+    /**
+     Return the NSString object from a given GPXFix.
+     - Parameter fix: The GPXFix which to convert NSString.
+     - Returns: A NSString from a fix.
      */
     class func valueForFix(_ fix: GPXFix) -> String {
         switch fix {
@@ -131,9 +139,10 @@ class GPXType: NSObject {
         }
     }
 
-    /** Return the NSInteger object from a given string.
-     @param value The string which to convert NSInteger. A value ≥0 and ≤1023.
-     @return A NSInteger from a value.
+    /**
+     Return the NSInteger object from a given string.
+     - Parameter value: The string which to convert NSInteger. A value ≥0 and ≤1023.
+     - Returns: A NSInteger from a value.
      */
     class func dgpsStation(_ value: String) -> Int {
         if let i = Int(value),
@@ -144,9 +153,11 @@ class GPXType: NSObject {
         return 0;
     }
 
-    /** Return the NSString object from a given NSInteger.
-     @param dgpsStation The NSInteger which to convert NSString. A value ≥0 and ≤1023.
-     @return A NSString from a dgpsStation.
+    /**
+     Return the String object from a given Int.
+     - Parameters:
+        - dgpsStation: The Int which to convert String. A value ≥0 and ≤1023.
+     - Returns: A String from a dgpsStation.
      */
     class func valueForDgpsStation(_ dgpsStation: Int) -> String {
         if (dgpsStation >= 0 && dgpsStation <= 1023) {
@@ -155,26 +166,43 @@ class GPXType: NSObject {
         return "0";
     }
 
-    /** Return the double value from a given string.
-     @param value The string which to convert CGFloat.
-     @return A double from a value.
+    /**
+     Return the double value from a given string.
+     - Parameter value: The string which to convert CGFloat.
+     - Returns: A double from a value.
      */
     class func decimal(_ value: String) -> Double? {
         let f = Double(value);
         return f;
     }
 
-    /** Return the NSString object from a given double.
-     @param decimal The double which to convert NSString.
-     @return A NSString from a decimal.
+    /**
+     Return the NSString object from a given double.
+     - Parameter decimal: The double which to convert NSString.
+     - Returns: A NSString from a decimal.
      */
     class func valueForDecimal(_ decimal: Double) -> String? {
         return String(decimal)
     }
 
-    /** Return the NSDate object from a given string.
+    private class func newDateFormatterWithFormat(_ format: String?) -> DateFormatter? {
+        guard let format = format else {
+            return nil;
+        }
+        let dateFormatter = DateFormatter()
+        let locale = Locale(identifier: "en_US_POSIX");
+        
+        dateFormatter.calendar = Calendar(identifier: .gregorian);
+        dateFormatter.locale = locale;
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        dateFormatter.dateFormat = format;
+        return dateFormatter
+    }
+    
+    /**
+     Return the Date object from a given String.
      
-     pecifies a single moment in time. The value is a dateTime, which can be one of the following:
+     Specifies a single moment in time. The value is a dateTime, which can be one of the following:
      
      - *gYear* gives year resolution
      - *gYearMonth* gives month resolution
@@ -216,23 +244,9 @@ class GPXType: NSObject {
      <when>1997-07-16T10:30:15+03:00</when>
      </TimeStamp>
      
-     @param value The string which to convert NSDate.
-     @return A NSDate from a value.
+     - Parameter value: The string which to convert Date.
+     - Returns: A Date from a value.
      */
-    private class func newDateFormatterWithFormat(_ format: String?) -> DateFormatter? {
-        guard let format = format else {
-            return nil;
-        }
-        let dateFormatter = DateFormatter()
-        let locale = Locale(identifier: "en_US_POSIX");
-        
-        dateFormatter.calendar = Calendar(identifier: .gregorian);
-        dateFormatter.locale = locale;
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        dateFormatter.dateFormat = format;
-        return dateFormatter
-    }
-    
     class func dateTime(_ value: String) -> Date? {
         var date: Date?
         
@@ -300,9 +314,10 @@ class GPXType: NSObject {
         return nil;
     }
 
-    /** Return the NSString object from a given NSDate.
-     @param date The NSDate which to convert NSString.
-     @return A dateTime (YYYY-MM-DDThh:mm:ssZ) value from a date.
+    /**
+     Return the NSString object from a given NSDate.
+     - Parameter date: The NSDate which to convert NSString.
+     - Returns: A dateTime (YYYY-MM-DDThh:mm:ssZ) value from a date.
      */
     class func valueForDateTime(_ date: Date) -> String {
         let formatter = DateFormatter()
@@ -315,9 +330,10 @@ class GPXType: NSObject {
         
     }
 
-    /** Return the NSInteger object from a given string.
-     @param value The string which to convert NSInteger. A value ≥0
-     @return A NSInteger from a value.
+    /**
+     Return the NSInteger object from a given string.
+     - Parameter value: The string which to convert NSInteger. A value ≥0
+     - Returns: A NSInteger from a value.
      */
     class func nonNegativeInteger(_ value: String) -> Int {
         if let i = Int(value),
@@ -327,9 +343,10 @@ class GPXType: NSObject {
         return 0;
     }
 
-    /** Return the NSString object from a given NSInteger.
-     @param integer The NSInteger which to convert NSString. A value ≥0
-     @return A NSString from a integer.
+    /**
+     Return the NSString object from a given NSInteger.
+     - Parameter integer: The NSInteger which to convert NSString. A value ≥0
+     - Returns: A NSString from a integer.
      */
     class func valueForNonNegativeInteger(_ integer: Int) -> String {
         if integer > 0 {
