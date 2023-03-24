@@ -5,6 +5,7 @@
 //  Created by John Sklikas on 3/3/23.
 //
 
+import CoreLocation
 import XCTest
 @testable import GPX
 
@@ -208,11 +209,24 @@ class GPX_SwiftTests: XCTestCase, GPXParsing {
     }
 
     func testExample() throws {
-        let path = Bundle.module.path(forResource: "mystic_basin_trail", ofType: "gpx")!
         
+        /// Check Parsing GPX File
+        let path = Bundle.module.path(forResource: "mystic_basin_trail", ofType: "gpx")!
         let parser = GPXParser(path);
         parser?.delegate = self;
         parser?.start();
+        
+        /// Check Saving GPX File
+        let coordinates: [CLLocationCoordinate2D] = [
+            CLLocationCoordinate2D(latitude: 37.778259, longitude: -122.391386),
+            CLLocationCoordinate2D(latitude: 37.778194, longitude: -122.391226),
+            CLLocationCoordinate2D(latitude: 37.778297, longitude: -122.391174),
+            CLLocationCoordinate2D(latitude: 37.778378, longitude: -122.391117),
+            CLLocationCoordinate2D(latitude: 37.778449, longitude: -122.391039),
+            CLLocationCoordinate2D(latitude: 37.778525, longitude: -122.390942)];
+        let logger = GPXLogger(coordinates, savingPreference: .route);
+        let exportedGPX = logger.export();
+        print(exportedGPX);
     }
 
     func testPerformanceExample() throws {
