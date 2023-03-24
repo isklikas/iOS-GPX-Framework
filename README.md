@@ -73,6 +73,7 @@ For every function, the GPX Framework must be imported.
 2. To generate a GPX File, initialise a `GPXLogger` object. There are 3 options:
     
     a. Initialise with an array of coordinates:
+    
         ```swift
         // For such an example, you may also refere to the GPXTests file
         let coordinates: [CLLocationCoordinate2D]; // Your Coordinates Array
@@ -80,6 +81,7 @@ For every function, the GPX Framework must be imported.
         ```
     
     b. Initialise with an array of locations:
+    
         ```swift
         let locations: [CLLocation]; // Your Locations Array
         let logger = GPXLogger(locations);
@@ -87,12 +89,14 @@ For every function, the GPX Framework must be imported.
         i. In `GPXLogger` initialisers for coordinates / locations, there is a `savingPreference` optional property. The default option, is `.tracks`:
 
             i.a: To save the exported route as a route, you can specify in the initialiser, as follows:
+            
                 ```swift
                 let locations: [CLLocation]; // Your Locations Array
                 let logger = GPXLogger(locations, savingPreference: .route);
                 ```
 
-            i.b: To save the exported route as an array of waypoints, you can specify in the initialiser, as follows :
+            i.b: To save the exported route as an array of waypoints, you can specify in the initialiser, as follows:
+            
                 ```swift
                 // GPX Waypoints are normally intended to be used as landmark points and not as a travelled path.
                 let coordinates: [CLLocationCoordinate2D]; // Your Coordinates Array
@@ -102,6 +106,7 @@ For every function, the GPX Framework must be imported.
             i.c: To save the exported route as a track, you do not need to specify the `savingPreference` property, as this is the default value.
             
         ii. In `GPXLogger` initialisers for coordinates / locations, there is also a `creator` optional property. The default option, is `"iOS-GPX-Framework"`, but you can change it to your application's name:
+        
             ```swift
             let locations: [CLLocation]; // Your Coordinates Array
             let logger = GPXLogger(locations, creator: "developer.my-app.com");
@@ -111,6 +116,7 @@ For every function, the GPX Framework must be imported.
             ```
     
     c. Initialise with an already existing `GPXRoot` object, that you have either parsed from a file and edited, or generated in case you want to use more metadata than a coordinates / locations array:
+    
         ```swift
         let gpxRoot: GPXRoot; // Your Root Object
         let logger = GPXLogger(gpxRoot);
