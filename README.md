@@ -1,4 +1,6 @@
 # iOS GPX Framework
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fisklikas%2FiOS-GPX-Framework%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/isklikas/iOS-GPX-Framework)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fisklikas%2FiOS-GPX-Framework%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/isklikas/iOS-GPX-Framework)
 
 This is a universal module for parsing/generating GPX files.
 This module parses the GPX from a URL or String and creates Swift Instances of GPX structure. 
