@@ -16,10 +16,11 @@ public protocol GPXParsing: NSObjectProtocol {
 
 /** Instances of this class parse GPX documents.
  */
-public class GPXParser: NSObject {
+public class GPXParser: NSObject, GPXParsing {
     
     var gpxXMLParser: GPXXMLParser;
     public weak var delegate: GPXParsing?
+    var completion: ((Result<GPXXMLElement, Error>) -> Void)?
     
     /// ---------------------------------
     /// **  Parsing
@@ -81,10 +82,31 @@ public class GPXParser: NSObject {
     
     /**
      Called to start parsing the GPX file.
-     - IMPORTANT: Only do so after setting your class as GPXParsing delegate
+     - NOTE: If no GPXParsing delegate is set, then the object is returned in async manner. Both async and completion handlers are supported.
      */
-    public func start() {
+    public func parse(completion: ((Result<GPXXMLElement, Error>) -> Void)? = nil) {
+        if self.delegate == nil {
+            self.delegate = self;
+            self.completion = completion;
+        }
         self.gpxXMLParser.startParsing();
+    }
+    
+    /**
+     Called to start parsing the GPX file in async / await manner.
+     */
+    @available(iOS 15, macOS 10.15, *)
+    public func parse() async throws -> GPXXMLElement {
+        return try await withCheckedThrowingContinuation { continuation in
+            self.parse(completion: { parseResult in
+                switch parseResult {
+                case .failure(let error):
+                    continuation.resume(throwing: error);
+                case .success(let parsedElement):
+                    continuation.resume(returning: parsedElement);
+                }
+            })
+        }
     }
 
     /** Called when the GPX file has been parsed successfully
@@ -97,5 +119,13 @@ public class GPXParser: NSObject {
      */
     func gpxParsingFailed(_ error: Error) {
         self.delegate?.parser(self, didFailParsingWithError: error);
+    }
+    
+    // MARK: GPXParsing Delegate calls
+    public func parser(_ parser: GPXParser, didCompleteParsing rootXMLElement: GPXXMLElement) {
+        self.completion?(.success(rootXMLElement));
+    }
+    public func parser(_ parser: GPXParser, didFailParsingWithError error: Error) {
+        self.completion?(.failure(error));
     }
 }

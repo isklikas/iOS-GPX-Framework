@@ -28,7 +28,7 @@ dependencies: [
   .package(
     name: "GPX",
     url: "https://github.com/isklikas/iOS-GPX-Framework.git",
-    .upToNextMinor(from: "1.0.0")
+    .upToNextMinor(from: "1.1.0")
   ),
 
   // Any other dependencies you have...
@@ -48,13 +48,37 @@ For every function, the GPX Framework must be imported.
 
 ### To Parse a GPX file:
     
-2. To parse a GPX File, call the parse method, with a class that conforms to the `GPXParsing` protocol. For example:
+2. To parse a GPX File, call the parse method. You can do so, by calling the async function, using the completion handler, or by conforming to the `GPXParsing` protocol. For example:
 
     ```swift
     let urlPath = Bundle.main.url(forResource: "mystic_basin_trail", withExtension: "gpx");
     let parser = GPXParser(urlPath);
-    parser.delegate = self;
-    parser.start();
+    
+    // Delegate Approach
+    // parser?.delegate = self;
+    // parser?.parse();
+        
+    // Completion Handler / Async - Await Approach.
+    // To see how to use GPXRoot, you can refer to the test file
+    if #available(iOS 15, macOS 10.15, *) {
+        Task {
+            if let rootElement = try? await parser?.parse() {
+                let root = GPXRoot(withXMLElement: parsedElement);
+            }
+        }
+    }
+    else {
+        parser?.parse(completion: { parseResult in
+            switch parseResult {
+            case .failure(let error):
+                print(error.localizedDescription);
+            case .success(let parsedElement):
+                let root = GPXRoot(withXMLElement: parsedElement);
+            }
+        })
+    }
+    
+    //MARK: Delegate Methods
     
     func parser(_ parser: GPXParser, didCompleteParsing rootXMLElement: GPXXMLElement) {
         let root = GPXRoot(withXMLElement: rootXMLElement);

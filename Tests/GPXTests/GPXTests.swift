@@ -213,8 +213,29 @@ class GPX_SwiftTests: XCTestCase, GPXParsing {
         /// Check Parsing GPX File
         let path = Bundle.module.path(forResource: "mystic_basin_trail", ofType: "gpx")!
         let parser = GPXParser(path);
-        parser?.delegate = self;
-        parser?.start();
+        
+        // Delegate Approach
+        // parser?.delegate = self;
+        // parser?.parse();
+        
+        // Completion Handler / Async - Await Approach.
+        if #available(iOS 15, macOS 10.15, *) {
+            Task {
+                if let rootElement = try? await parser?.parse() {
+                    self.parser(parser!, didCompleteParsing: rootElement);
+                }
+            }
+        }
+        else {
+            parser?.parse(completion: { parseResult in
+                switch parseResult {
+                case .failure(let error):
+                    print(error.localizedDescription);
+                case .success(let parsedElement):
+                    self.parser(parser!, didCompleteParsing: parsedElement);
+                }
+            })
+        }
         
         /// Check Saving GPX File
         let coordinates: [CLLocationCoordinate2D] = [
